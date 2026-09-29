@@ -59,14 +59,14 @@ export function Spectrum() {
                   value={band.coverage.value}
                   note={band.coverage.note}
                   highlight={band.highlight}
-                  delay={i * 0.1}
+                  delay={i * 2 * 0.12}
                 />
                 <Gauge
                   label="Capacity"
                   value={band.capacity.value}
                   note={band.capacity.note}
                   highlight={band.highlight}
-                  delay={i * 0.1 + 0.12}
+                  delay={(i * 2 + 1) * 0.12}
                 />
               </div>
             </div>
