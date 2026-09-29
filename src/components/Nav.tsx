@@ -102,7 +102,18 @@ export function Nav() {
         transition={sizeTransition}
         className="fixed inset-x-0 top-0 z-50 w-full border-b border-hairline/60 bg-white/72 backdrop-blur-xl backdrop-saturate-150 supports-[not(backdrop-filter:blur(0))]:bg-white"
       >
-        <nav aria-label="Main" className="shell flex h-full items-center justify-between gap-8">
+        <nav
+          aria-label="Main"
+          className="shell grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:flex md:h-full md:justify-between md:gap-8"
+        >
+          {/* Mobile-only balance column: an empty 1fr track matching the one
+              on the right (the actions column) is what keeps the logo's own
+              auto-sized column truly centred, at any viewport width, without
+              hardcoding a width to match the hamburger button. Removed
+              entirely on desktop (display:none drops it from the flex row
+              too), where the row goes back to its plain three-child layout. */}
+          <div aria-hidden className="md:hidden" />
+
           <Link
             href="/"
             onClick={() => {

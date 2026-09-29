@@ -25,24 +25,20 @@ const fadeUp = {
 };
 
 /**
- * The clip plays only where it can be read well: desktop viewports, with no
- * reduced-motion preference. Everywhere else the poster frame alone carries
- * the hero, and no <video> tag is rendered, so nothing is fetched for it.
+ * The clip plays everywhere, including mobile, since it's a light ~2.5MB
+ * file. The only visitors who get the poster alone are those who've asked
+ * for reduced motion; that's the one case worth reading as a real
+ * preference rather than a device-capability guess.
  */
 function useVideoBackground() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const mqWidth = window.matchMedia('(min-width: 768px)');
     const mqMotion = window.matchMedia('(prefers-reduced-motion: no-preference)');
-    const update = () => setEnabled(mqWidth.matches && mqMotion.matches);
+    const update = () => setEnabled(mqMotion.matches);
     update();
-    mqWidth.addEventListener('change', update);
     mqMotion.addEventListener('change', update);
-    return () => {
-      mqWidth.removeEventListener('change', update);
-      mqMotion.removeEventListener('change', update);
-    };
+    return () => mqMotion.removeEventListener('change', update);
   }, []);
 
   return enabled;
@@ -54,9 +50,19 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
     // The source clip reads a touch fast behind static text; a mild slowdown
     // keeps it from fighting the headline for attention.
-    if (videoRef.current) videoRef.current.playbackRate = 0.85;
+    video.playbackRate = 0.85;
+    // Belt-and-suspenders for iOS: the muted attribute alone doesn't always
+    // satisfy Safari's autoplay policy, so it's set as a JS property too.
+    video.muted = true;
+    // Autoplay can still be refused (iOS Low Power Mode, Android data saver).
+    // That's a normal, expected outcome here, not a bug: the poster attribute
+    // is already the right fallback frame, so a rejection just means nothing
+    // further happens, with no console error and no visible break.
+    video.play().catch(() => {});
   }, [videoEnabled]);
 
   return (
@@ -66,7 +72,11 @@ export function Hero() {
       {videoEnabled ? (
         <video
           ref={videoRef}
-          className="absolute inset-0 -z-20 h-full w-full object-cover mix-blend-multiply"
+          // The bright core the clip radiates from sits dead centre in the
+          // source, which is also where the headline sits on a tall mobile
+          // frame; desktop reverts to plain centring once the crop is wide
+          // enough that there's nothing to tune.
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_42%] mix-blend-multiply md:object-center"
           autoPlay
           muted
           loop
@@ -86,9 +96,14 @@ export function Hero() {
           fetchPriority="high"
           sizes="100vw"
           aria-hidden
-          className="absolute inset-0 -z-20 object-cover mix-blend-multiply"
+          className="absolute inset-0 -z-20 object-cover object-[50%_42%] mix-blend-multiply md:object-center"
         />
       )}
+
+      {/* Extra flat veil, mobile only: the hero runs the full viewport height
+          there, so more of the clip is visible behind a narrower measure of
+          text than on desktop. The halo below already carries desktop. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-white/60 md:hidden" />
 
       {/* Soft white halo behind the headline only, so the clip stays visible at
           the edges of the frame while the text keeps AA contrast at the centre. */}
