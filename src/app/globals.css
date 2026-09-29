@@ -4,13 +4,23 @@
 
 @layer base {
   :root {
-    --nav-height: 52px;
+    /* The larger (resting) desktop bar height. Anchor scrolls use this, not
+       the smaller scrolled height, so a link clicked from the very top of
+       the page still clears the header once the jump lands. */
+    --nav-height: 96px;
+    --nav-height-mobile: 68px;
   }
 
   html {
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--nav-height) + 24px);
     -webkit-text-size-adjust: 100%;
+  }
+
+  @media (max-width: 767px) {
+    html {
+      scroll-padding-top: calc(var(--nav-height-mobile) + 24px);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
