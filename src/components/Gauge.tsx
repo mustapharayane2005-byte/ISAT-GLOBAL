@@ -11,15 +11,16 @@ type GaugeProps = {
   note: string;
   highlight?: boolean;
   delay?: number;
+  /** Driven by one shared observer on the grid of all three cards (see
+      Spectrum.tsx), not a per-bar or per-card one: a card that's itself
+      offset or mid-transform (the highlighted 3.5 GHz card) was throwing off
+      its own whileInView reading, which is what left it stuck at 0%. */
+  inView: boolean;
 };
 
-// Triggered by the bar itself, not the card: a mobile card can be taller than
-// the viewport, and once:true + amount:0.3 on the (much shorter) bar is what
-// lets it fire reliably without waiting for the whole card to clear.
-const VIEWPORT = { once: true, amount: 0.3 } as const;
-
-export function Gauge({ label, value, note, highlight = false, delay = 0 }: GaugeProps) {
+export function Gauge({ label, value, note, highlight = false, delay = 0, inView }: GaugeProps) {
   const reduce = usePrefersReducedMotion();
+  const filled = reduce || inView;
   const transition = reduce ? { duration: 0 } : { duration: DURATION.slow, delay, ease: EASE };
 
   return (
@@ -28,8 +29,7 @@ export function Gauge({ label, value, note, highlight = false, delay = 0 }: Gaug
         <span className="text-caption text-ink-muted">{label}</span>
         <motion.span
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={VIEWPORT}
+          animate={{ opacity: filled ? 1 : 0 }}
           transition={transition}
           className={`text-caption font-medium ${highlight ? 'text-accent-strong' : 'text-ink'}`}
         >
@@ -43,12 +43,14 @@ export function Gauge({ label, value, note, highlight = false, delay = 0 }: Gaug
       >
         <motion.div
           initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: value / 100 }}
-          viewport={VIEWPORT}
+          animate={{ scaleX: filled ? value / 100 : 0 }}
           transition={transition}
           style={{ transformOrigin: 'left' }}
+          // Explicit background-color fallback plus the gradient image, so
+          // the fill is never see-through even if the gradient failed to
+          // apply for any reason.
           className={`h-full w-full rounded-pill ${
-            highlight ? 'bg-gradient-to-r from-[#F83A04] to-[#D6181F]' : 'bg-ink'
+            highlight ? 'bg-[#F83A04] bg-gradient-to-r from-[#F83A04] to-[#D6181F]' : 'bg-ink'
           }`}
         />
       </div>

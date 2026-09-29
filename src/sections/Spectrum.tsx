@@ -1,3 +1,7 @@
+'use client';
+
+import { useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { Gauge } from '@/components/Gauge';
 import { ParallaxPhoto } from '@/components/ParallaxPhoto';
 import { Reveal } from '@/components/Reveal';
@@ -32,6 +36,13 @@ const BANDS = [
 ];
 
 export function Spectrum() {
+  // One observer for all three cards, not one per card or per bar: the
+  // highlighted card carries its own visual offset (below), and a nested
+  // observer on or under a transformed/offset element was what threw the
+  // 3.5 GHz bars' own readings off, leaving them stuck at 0%.
+  const gridRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(gridRef, { once: true, amount: 0.25 });
+
   return (
     <Section id="five-g">
       <SectionHead
@@ -39,14 +50,15 @@ export function Spectrum() {
         lead="Spectrum forces a trade between how far a signal reaches and how much it carries. One band refuses to choose."
       />
 
-      <div className="mt-20 grid gap-12 lg:grid-cols-[1fr_1.32fr_1fr] lg:items-start lg:gap-10">
-        {BANDS.map((band, i) => (
-          <Reveal key={band.band} delay={i * 0.1}>
+      <div
+        ref={gridRef}
+        className="mt-20 grid gap-12 lg:grid-cols-[1fr_1.32fr_1fr] lg:items-start lg:gap-10"
+      >
+        {BANDS.map((band, i) => {
+          const card = (
             <div
               className={
-                band.highlight
-                  ? 'rounded-frame bg-surface p-8 lg:-mt-8 lg:p-10'
-                  : 'border-t border-hairline pt-8 lg:pt-10'
+                band.highlight ? 'rounded-frame bg-surface p-8 lg:p-10' : 'border-t border-hairline pt-8 lg:pt-10'
               }
             >
               <p className={`text-title ${band.highlight ? 'text-accent' : 'text-ink'}`}>{band.band}</p>
@@ -60,6 +72,7 @@ export function Spectrum() {
                   note={band.coverage.note}
                   highlight={band.highlight}
                   delay={i * 2 * 0.12}
+                  inView={inView}
                 />
                 <Gauge
                   label="Capacity"
@@ -67,11 +80,30 @@ export function Spectrum() {
                   note={band.capacity.note}
                   highlight={band.highlight}
                   delay={(i * 2 + 1) * 0.12}
+                  inView={inView}
                 />
               </div>
             </div>
-          </Reveal>
-        ))}
+          );
+
+          if (band.highlight) {
+            // No transform, scale or opacity on the card itself, so it can
+            // never distort the shared observer above it. The pulled-up
+            // position is carried entirely by this plain wrapper instead,
+            // which has no motion and no observer of its own.
+            return (
+              <div key={band.band} className="lg:-mt-8">
+                {card}
+              </div>
+            );
+          }
+
+          return (
+            <Reveal key={band.band} delay={i * 0.1}>
+              {card}
+            </Reveal>
+          );
+        })}
       </div>
 
       <Reveal className="mt-24 md:mt-32">
