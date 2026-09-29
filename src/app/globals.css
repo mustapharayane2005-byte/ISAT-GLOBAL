@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nav-height: 52px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 24px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-canvas text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv05';
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Keyboard focus stays visible everywhere; pointer clicks stay quiet. */
+  :focus-visible {
+    outline: 2px solid theme('colors.accent');
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: theme('colors.accent');
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 md:px-8;
+  }
+
+  /* Tabular figures keep animated counters from jittering as digits change. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+
+  /* City pin: a 2px bounce on hover, only where hover is a real pointer
+     gesture (not a touch tap-and-stick). The global prefers-reduced-motion
+     reset above already collapses this transition to ~0 for those visitors. */
+  .city-pin {
+    transition: transform 250ms ease;
+  }
+  @media (hover: hover) {
+    .group\/city:hover .city-pin {
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Main nav links: colour-only hover and focus, never layout. Hover is
+     gated to real pointers so a touch tap doesn't leave the link stuck red. */
+  .nav-link {
+    transition: color 250ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+      color: #d6181f;
+    }
+  }
+  .nav-link:focus-visible {
+    color: #d6181f;
+  }
+
+  /* Photo zoom: only the <img> scales, the frame stays put and clips it
+     (overflow-hidden, set where .photo-frame is used). Hover is restricted to
+     real pointers so a touch tap never leaves a photo stuck zoomed in; both
+     triggers drop out entirely under prefers-reduced-motion, not just to a
+     faster transition, per spec. */
+  .photo-zoom {
+    transform-origin: center;
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .photo-zoom {
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .photo-frame:hover .photo-zoom {
+      transform: scale(1.06);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    /* Scoped to the tile (the focusable ancestor a caller marks with
+       .tile-focus), not .photo-frame itself: the element that receives
+       keyboard focus is usually the card around the photo, not the photo's
+       own frame, and :focus-within only matches a selector that IS the
+       focused element or contains it, never one nested inside it. */
+    .tile-focus:focus-within .photo-zoom {
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      transform: scale(1.06);
+    }
+  }
+}
