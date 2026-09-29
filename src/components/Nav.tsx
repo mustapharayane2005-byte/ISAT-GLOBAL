@@ -67,11 +67,16 @@ function useIsDesktop() {
 }
 
 // Bar and logo heights, resting (top of page) vs after a 40px scroll. Mobile
-// ignores the scroll state entirely and always uses its own fixed size.
-const BAR_HEIGHT = { top: 96, scrolled: 72 };
-const LOGO_HEIGHT = { top: 68, scrolled: 52 };
-const MOBILE_BAR_HEIGHT = 68;
-const MOBILE_LOGO_HEIGHT = 48;
+// now shrinks too, from its own larger resting size down to the same
+// scrolled size as desktop.
+const BAR_HEIGHT = {
+  desktop: { top: 96, scrolled: 72 },
+  mobile: { top: 92, scrolled: 72 },
+};
+const LOGO_HEIGHT = {
+  desktop: { top: 68, scrolled: 52 },
+  mobile: { top: 72, scrolled: 52 },
+};
 const SCROLL_THRESHOLD = 40;
 const SIZE_TRANSITION = { duration: 0.3, ease: EASE };
 
@@ -90,8 +95,10 @@ export function Nav() {
     setScrolled(latest > SCROLL_THRESHOLD);
   });
 
-  const barHeight = isDesktop ? (scrolled ? BAR_HEIGHT.scrolled : BAR_HEIGHT.top) : MOBILE_BAR_HEIGHT;
-  const logoHeight = isDesktop ? (scrolled ? LOGO_HEIGHT.scrolled : LOGO_HEIGHT.top) : MOBILE_LOGO_HEIGHT;
+  const barSizes = isDesktop ? BAR_HEIGHT.desktop : BAR_HEIGHT.mobile;
+  const logoSizes = isDesktop ? LOGO_HEIGHT.desktop : LOGO_HEIGHT.mobile;
+  const barHeight = scrolled ? barSizes.scrolled : barSizes.top;
+  const logoHeight = scrolled ? logoSizes.scrolled : logoSizes.top;
   const logoWidth = Math.round(logoHeight * LOGO_RATIO);
   const sizeTransition = reduce ? { duration: 0 } : SIZE_TRANSITION;
 
@@ -222,7 +229,7 @@ export function Nav() {
           actually guarantees zero layout shift as the header itself
           animates smaller on scroll: nothing below it ever moves, because
           this element's own height never changes. */}
-      <div aria-hidden className="h-[68px] md:h-24" />
+      <div aria-hidden className="h-[92px] md:h-24" />
     </>
   );
 }
