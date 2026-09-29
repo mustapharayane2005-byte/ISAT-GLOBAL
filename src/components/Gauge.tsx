@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { DURATION, EASE, VIEWPORT, usePrefersReducedMotion } from '@/lib/motion';
+import { DURATION, EASE, usePrefersReducedMotion } from '@/lib/motion';
 
 type GaugeProps = {
   label: string;
@@ -29,11 +29,12 @@ export function Gauge({ label, value, note, highlight = false, delay = 0 }: Gaug
       >
         <motion.div
           initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: value / 100 }}
-          viewport={VIEWPORT}
+          animate={{ scaleX: value / 100 }}
           transition={reduce ? { duration: 0 } : { duration: DURATION.slow, delay, ease: EASE }}
           style={{ transformOrigin: 'left' }}
-          className={`h-full w-full rounded-pill ${highlight ? 'bg-accent' : 'bg-ink'}`}
+          className={`h-full w-full rounded-pill ${
+            highlight ? 'bg-gradient-to-r from-[#F83A04] to-[#D6181F]' : 'bg-ink'
+          }`}
         />
       </div>
     </div>
