@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { MapPinIcon } from '@/components/MapPinIcon';
 
 const COLUMNS = [
   {
@@ -43,11 +44,23 @@ export function Footer() {
             <p className="mt-5 max-w-measure text-body">
               Digital freedom for every Nigerian.
             </p>
-            <address className="mt-5 not-italic text-body">
-              Lagos, Nigeria
-              <br />
-              <a href="tel:+23412792000" className="transition-colors hover:text-ink">
+            <address className="mt-5 max-w-measure not-italic text-body">
+              <span className="flex items-start gap-2">
+                <MapPinIcon className="mt-[3px] shrink-0 text-[#D6181F]" />
+                <span>
+                  29 Berkley Street, Ajele
+                  <br />
+                  Lagos Island, Lagos, Nigeria
+                </span>
+              </span>
+              <a href="tel:+23412792000" className="mt-3 block transition-colors hover:text-ink">
                 +234 1 279 2000
+              </a>
+              <a
+                href="mailto:partnerships@isat.com.ng"
+                className="block transition-colors hover:text-ink"
+              >
+                partnerships@isat.com.ng
               </a>
             </address>
           </div>

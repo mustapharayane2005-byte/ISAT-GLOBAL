@@ -1,3 +1,4 @@
+import { MapPinIcon } from '@/components/MapPinIcon';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
 
@@ -17,6 +18,26 @@ export function Contact() {
           Contact us
         </a>
         <p className="mt-6 text-caption text-ink-muted">partnerships@isat.com.ng</p>
+
+        <div className="mt-12 flex flex-col items-center gap-2 border-t border-hairline pt-10">
+          <div className="flex items-center gap-2">
+            <MapPinIcon className="shrink-0 text-[#D6181F]" />
+            <span className="text-caption font-medium text-ink">Visit us</span>
+          </div>
+          <p className="text-caption text-ink-muted">
+            29 Berkley Street, Ajele
+            <br />
+            Lagos Island, Lagos, Nigeria
+          </p>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=29+Berkley+Street+Ajele+Lagos+Island+Lagos+Nigeria"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-caption font-medium text-[#D6181F] underline-offset-2 hover:underline"
+          >
+            Open in Maps
+          </a>
+        </div>
       </Reveal>
     </Section>
   );
