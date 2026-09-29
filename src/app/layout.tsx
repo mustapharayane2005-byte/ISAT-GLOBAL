@@ -3,6 +3,7 @@ import { Inter_Tight } from 'next/font/google';
 import Script from 'next/script';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
+import { Ticker } from '@/components/Ticker';
 import './globals.css';
 
 const interTight = Inter_Tight({
@@ -99,6 +100,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        {/* Normal block, not sticky or fixed: scrolls away with the page.
+            The nav (fixed) sits offset below it at rest and closes the gap
+            once this has scrolled out of view; see Nav.tsx. */}
+        <Ticker variant="dark" direction="rtl" />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

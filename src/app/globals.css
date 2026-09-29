@@ -4,11 +4,12 @@
 
 @layer base {
   :root {
-    /* The larger (resting) desktop bar height. Anchor scrolls use this, not
-       the smaller scrolled height, so a link clicked from the very top of
-       the page still clears the header once the jump lands. */
-    --nav-height: 96px;
-    --nav-height-mobile: 68px;
+    /* The larger (resting) bar height, plus the 36px ticker that sits above
+       it at the top of the page. Anchor scrolls use this worst case, not the
+       smaller scrolled height, so a link clicked from the very top still
+       clears both the ticker and the header once the jump lands. */
+    --nav-height: 132px;
+    --nav-height-mobile: 128px;
   }
 
   html {
@@ -118,5 +119,35 @@
       transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
       transform: scale(1.06);
     }
+  }
+
+  /* Ticker: two identical halves inside .ticker-track, animated from 0 to
+     -50%. At -50% the second half sits exactly where the first started, so
+     the loop has no visible seam. direction: reverse (set inline per
+     instance) plays the same keyframe backwards for a left-to-right ticker,
+     rather than needing a second, mirrored keyframe. */
+  @keyframes ticker-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .ticker-track {
+    animation-name: ticker-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  /* Pausing on hover is restricted to real pointers, so a touch tap doesn't
+     leave the ticker stuck paused; pausing on keyboard focus (the ticker
+     itself is a tabIndex={0} target) is unconditional, for accessibility. */
+  @media (hover: hover) {
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
+    }
+  }
+  .ticker:focus-within .ticker-track {
+    animation-play-state: paused;
   }
 }

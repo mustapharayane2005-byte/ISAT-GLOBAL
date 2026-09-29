@@ -77,7 +77,11 @@ const LOGO_HEIGHT = {
   desktop: { top: 68, scrolled: 52 },
   mobile: { top: 72, scrolled: 52 },
 };
-const SCROLL_THRESHOLD = 40;
+// Matches the top ticker's own height (36px): once scrolled past it, the
+// ticker (a normal, non-fixed block) has scrolled out of view, so this is
+// also the moment the fixed nav should close the gap and sit flush at 0.
+const SCROLL_THRESHOLD = 36;
+const TICKER_HEIGHT = 36;
 const SIZE_TRANSITION = { duration: 0.3, ease: EASE };
 
 /** Logo file is 252 x 318 (portrait). Width always derives from height at that ratio, so it is never stretched. */
@@ -105,9 +109,12 @@ export function Nav() {
   return (
     <>
       <motion.header
-        animate={{ height: barHeight }}
+        animate={{ height: barHeight, top: scrolled ? 0 : TICKER_HEIGHT }}
         transition={sizeTransition}
-        className="fixed inset-x-0 top-0 z-50 w-full border-b border-hairline/60 bg-white/72 backdrop-blur-xl backdrop-saturate-150 supports-[not(backdrop-filter:blur(0))]:bg-white"
+        // top-9 (36px) is the SSR/pre-hydration fallback, matching the
+        // un-scrolled Framer target exactly, so there's nothing to correct
+        // once JS takes over: the ticker sits above at the same height.
+        className="fixed inset-x-0 top-9 z-50 w-full border-b border-hairline/60 bg-white/72 backdrop-blur-xl backdrop-saturate-150 supports-[not(backdrop-filter:blur(0))]:bg-white"
       >
         <nav
           aria-label="Main"
@@ -141,7 +148,7 @@ export function Nav() {
                 src="/images/logo-isat.png"
                 alt="iSAT"
                 fill
-                sizes={`${Math.ceil(LOGO_HEIGHT.top * LOGO_RATIO)}px`}
+                sizes={`${Math.ceil(Math.max(LOGO_HEIGHT.desktop.top, LOGO_HEIGHT.mobile.top) * LOGO_RATIO)}px`}
                 priority
                 className="object-contain"
               />
