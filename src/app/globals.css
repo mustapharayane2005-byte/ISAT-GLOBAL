@@ -121,12 +121,41 @@
     }
   }
 
-  /* Ticker: two identical halves inside .ticker-track, animated from 0 to
-     -50%. At -50% the second half sits exactly where the first started, so
-     the loop has no visible seam. direction: reverse (set inline per
-     instance) plays the same keyframe backwards for a left-to-right ticker,
-     rather than needing a second, mirrored keyframe. */
-  @keyframes ticker-scroll {
+  /* Ticker: a single animation, on the track alone. Two identical groups
+     inside it, translateX 0 to -50%: at -50% the second group sits exactly
+     where the first started, so the loop has no visible seam. */
+  .ticker {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 40s linear infinite;
+  }
+  .ticker-track.reverse {
+    animation-direction: reverse;
+  }
+  .ticker-group {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    padding-right: 28px;
+    flex: none;
+  }
+  .ticker em {
+    font-style: normal;
+    background: linear-gradient(90deg, #f83a04, #d6181f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  @keyframes ticker {
     from {
       transform: translateX(0);
     }
@@ -134,20 +163,12 @@
       transform: translateX(-50%);
     }
   }
-  .ticker-track {
-    animation-name: ticker-scroll;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-  }
-  /* Pausing on hover is restricted to real pointers, so a touch tap doesn't
-     leave the ticker stuck paused; pausing on keyboard focus (the ticker
-     itself is a tabIndex={0} target) is unconditional, for accessibility. */
-  @media (hover: hover) {
-    .ticker:hover .ticker-track {
-      animation-play-state: paused;
-    }
-  }
-  .ticker:focus-within .ticker-track {
+  .ticker:hover .ticker-track {
     animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
+    }
   }
 }
