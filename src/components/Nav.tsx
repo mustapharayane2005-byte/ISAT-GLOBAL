@@ -155,7 +155,7 @@ export function Nav() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-self-end gap-2 md:justify-self-auto">
             <Link
               href="/#contact"
               className="hidden rounded-pill bg-accent-strong px-4 py-2 text-nav font-medium text-white transition-colors duration-200 ease-apple hover:bg-accent-press active:scale-[0.98] md:inline-flex"
@@ -168,7 +168,7 @@ export function Nav() {
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label={open ? 'Close menu' : 'Open menu'}
-              className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-pill text-ink md:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-pill text-ink md:hidden"
             >
               {open ? <X size={22} weight="regular" /> : <List size={22} weight="regular" />}
             </button>
