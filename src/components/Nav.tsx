@@ -8,6 +8,7 @@ import { List, X } from '@phosphor-icons/react/dist/ssr';
 import { EASE, usePrefersReducedMotion } from '@/lib/motion';
 
 const LINKS = [
+  { label: 'About', href: '/about', id: 'about' },
   { label: '5G', href: '/#five-g', id: 'five-g' },
   { label: 'Coverage', href: '/#coverage', id: 'coverage' },
   { label: 'iSAT One', href: '/#isat-one', id: 'isat-one' },
@@ -114,7 +115,11 @@ export function Nav() {
         // top-9 (36px) is the SSR/pre-hydration fallback, matching the
         // un-scrolled Framer target exactly, so there's nothing to correct
         // once JS takes over: the ticker sits above at the same height.
-        className="fixed inset-x-0 top-9 z-50 w-full border-b border-hairline/60 bg-white/72 backdrop-blur-xl backdrop-saturate-150 supports-[not(backdrop-filter:blur(0))]:bg-white"
+        // Solid white, not translucent: a blurred/translucent bar over the
+        // black ISAT ONE section picked up that black backdrop, which is
+        // what made the bar look dark with the logo hard to see once the
+        // Impact link (right after that section) became active.
+        className="fixed inset-x-0 top-9 z-50 w-full border-b border-hairline/60 bg-white"
       >
         <nav
           aria-label="Main"

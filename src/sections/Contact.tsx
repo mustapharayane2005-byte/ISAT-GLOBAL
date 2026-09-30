@@ -12,31 +12,44 @@ export function Contact() {
           collaboration at every layer.
         </p>
         <a
-          href="mailto:partnerships@isat.com.ng"
+          href="mailto:partnership@isatnigeria.com"
           className="mt-10 inline-flex items-center rounded-pill bg-accent-strong px-7 py-3 text-body font-medium text-white transition-[background-color,transform] duration-200 ease-apple hover:bg-accent-press active:scale-[0.98]"
         >
           Contact us
         </a>
-        <p className="mt-6 text-caption text-ink-muted">partnerships@isat.com.ng</p>
+        <p className="mt-6 text-caption text-ink-muted">partnership@isatnigeria.com</p>
 
-        <div className="mt-12 flex flex-col items-center gap-2 border-t border-hairline pt-10">
-          <div className="flex items-center gap-2">
-            <MapPinIcon className="shrink-0 text-[#D6181F]" />
-            <span className="text-caption font-medium text-ink">Visit us</span>
-          </div>
-          <p className="text-caption text-ink-muted">
-            29 Berkley Street, Ajele
-            <br />
-            Lagos Island, Lagos, Nigeria
-          </p>
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=29+Berkley+Street+Ajele+Lagos+Island+Lagos+Nigeria"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-caption font-medium text-[#D6181F] underline-offset-2 hover:underline"
-          >
-            Open in Maps
-          </a>
+        <div className="mt-12 flex flex-col items-center gap-8 border-t border-hairline pt-10 sm:flex-row sm:justify-center sm:gap-16">
+          {[
+            {
+              lines: ['29 Berkley Street, Ajele', 'Lagos Island, Lagos, Nigeria'],
+              mapsQuery: '29+Berkley+Street+Ajele+Lagos+Island+Lagos+Nigeria',
+            },
+            {
+              lines: ['Stallion 42, Blantyre Street', 'Wuse 2, Abuja, Nigeria'],
+              mapsQuery: 'Stallion+42+Blantyre+Street+Wuse+2+Abuja+Nigeria',
+            },
+          ].map((addr) => (
+            <div key={addr.mapsQuery} className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                <MapPinIcon className="shrink-0 text-[#D6181F]" />
+                <span className="text-caption font-medium text-ink">Visit us</span>
+              </div>
+              <p className="text-caption text-ink-muted">
+                {addr.lines[0]}
+                <br />
+                {addr.lines[1]}
+              </p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${addr.mapsQuery}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-caption font-medium text-[#D6181F] underline-offset-2 hover:underline"
+              >
+                Open in Maps
+              </a>
+            </div>
+          ))}
         </div>
       </Reveal>
     </Section>

@@ -15,16 +15,28 @@ const COLUMNS = [
     heading: 'Platform',
     links: [
       { label: 'iSAT One', href: '/#isat-one' },
-      { label: 'Sovereign cloud', href: '/#isat-one' },
+      { label: 'Cloud infrastructure', href: '/#isat-one' },
       { label: 'AI and GPU computing', href: '/#isat-one' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'Partnerships', href: 'mailto:partnerships@isat.com.ng' },
-      { label: 'Call +234 1 279 2000', href: 'tel:+23412792000' },
+      { label: 'About', href: '/about' },
+      { label: 'Partnerships', href: 'mailto:partnership@isatnigeria.com' },
+      { label: 'Call +234 708 969 7172', href: 'tel:+2347089697172' },
     ],
+  },
+];
+
+const ADDRESSES = [
+  {
+    lines: ['29 Berkley Street, Ajele', 'Lagos Island, Lagos, Nigeria'],
+    mapsQuery: '29+Berkley+Street+Ajele+Lagos+Island+Lagos+Nigeria',
+  },
+  {
+    lines: ['Stallion 42, Blantyre Street', 'Wuse 2, Abuja, Nigeria'],
+    mapsQuery: 'Stallion+42+Blantyre+Street+Wuse+2+Abuja+Nigeria',
   },
 ];
 
@@ -36,33 +48,49 @@ export function Footer() {
           <div>
             <Image
               src="/images/logo-isat.png"
-              alt="iSAT"
+              alt="ISAT"
               width={33}
               height={42}
               className="h-[42px] w-auto"
             />
             <p className="mt-5 max-w-measure text-body">
-              Digital freedom for every Nigerian.
+              Connecting Africa to what&rsquo;s next.
             </p>
-            <address className="mt-5 max-w-measure not-italic text-body">
-              <span className="flex items-start gap-2">
-                <MapPinIcon className="mt-[3px] shrink-0 text-[#D6181F]" />
-                <span>
-                  29 Berkley Street, Ajele
-                  <br />
-                  Lagos Island, Lagos, Nigeria
-                </span>
-              </span>
-              <a href="tel:+23412792000" className="mt-3 block transition-colors hover:text-ink">
-                +234 1 279 2000
+
+            <div className="mt-5 space-y-5">
+              {ADDRESSES.map((addr) => (
+                <address key={addr.mapsQuery} className="max-w-measure not-italic text-body">
+                  <span className="flex items-start gap-2">
+                    <MapPinIcon className="mt-[3px] shrink-0 text-[#D6181F]" />
+                    <span>
+                      {addr.lines[0]}
+                      <br />
+                      {addr.lines[1]}
+                    </span>
+                  </span>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${addr.mapsQuery}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1.5 inline-block pl-[26px] text-caption font-medium text-[#D6181F] hover:underline"
+                  >
+                    Open in Maps
+                  </a>
+                </address>
+              ))}
+            </div>
+
+            <div className="mt-5 space-y-1 text-body">
+              <a href="tel:+2347089697172" className="block transition-colors hover:text-ink">
+                +234 708 969 7172
               </a>
-              <a
-                href="mailto:partnerships@isat.com.ng"
-                className="block transition-colors hover:text-ink"
-              >
-                partnerships@isat.com.ng
+              <a href="tel:+2348075606396" className="block transition-colors hover:text-ink">
+                +234 807 560 6396
               </a>
-            </address>
+              <a href="mailto:Info@isatnigeria.com" className="block transition-colors hover:text-ink">
+                Info@isatnigeria.com
+              </a>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-x-12 gap-y-10 sm:grid-cols-3 md:gap-x-16">
@@ -85,12 +113,12 @@ export function Footer() {
 
         <div className="mt-14 border-t border-hairline pt-8">
           <p className="max-w-[70ch] text-caption">
-            Coverage, investment, capacity and economic figures shown on this page are iSAT
+            Coverage, investment, capacity and economic figures shown on this page are ISAT
             projections and planning targets, not guaranteed results. Site counts include planned
             build-out through 2030.
           </p>
           <p className="mt-4 text-caption">
-            &copy; {new Date().getFullYear()} iSAT. All rights reserved.
+            &copy; {new Date().getFullYear()} ISAT. All rights reserved.
           </p>
         </div>
       </div>

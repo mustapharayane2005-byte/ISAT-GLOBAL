@@ -3,7 +3,7 @@ import { Inter_Tight } from 'next/font/google';
 import Script from 'next/script';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
-import { Ticker } from '@/components/Ticker';
+import { Countdown } from '@/components/Countdown';
 import './globals.css';
 
 const interTight = Inter_Tight({
@@ -15,15 +15,17 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL('https://isat.com.ng'),
   title: {
-    default: 'iSAT 5G. Be free.',
-    template: '%s | iSAT',
+    default: 'ISAT | Connecting Africa to What’s Next',
+    template: '%s | ISAT',
   },
-  description: 'iSAT 5G. Be free.',
+  description:
+    'ISAT is a digital infrastructure and services company building intelligent connectivity for people, businesses and communities across Africa.',
   openGraph: {
-    title: 'iSAT 5G. Be free.',
-    description: 'iSAT 5G. Be free.',
+    title: 'ISAT | Connecting Africa to What’s Next',
+    description:
+      'ISAT is a digital infrastructure and services company building intelligent connectivity for people, businesses and communities across Africa.',
     url: 'https://isat.com.ng',
-    siteName: 'iSAT',
+    siteName: 'ISAT',
     locale: 'en_NG',
     type: 'website',
   },
@@ -38,18 +40,27 @@ export const viewport: Viewport = {
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'iSAT',
+  name: 'ISAT',
   url: 'https://isat.com.ng',
   logo: 'https://isat.com.ng/images/logo-isat.png',
-  telephone: '+234-1-279-2000',
-  email: 'partnerships@isat.com.ng',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '29 Berkley Street, Ajele',
-    addressLocality: 'Lagos Island',
-    addressRegion: 'Lagos',
-    addressCountry: 'NG',
-  },
+  telephone: ['+234-708-969-7172', '+234-807-560-6396'],
+  email: 'Info@isatnigeria.com',
+  address: [
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '29 Berkley Street, Ajele',
+      addressLocality: 'Lagos Island',
+      addressRegion: 'Lagos',
+      addressCountry: 'NG',
+    },
+    {
+      '@type': 'PostalAddress',
+      streetAddress: 'Stallion 42, Blantyre Street',
+      addressLocality: 'Wuse 2',
+      addressRegion: 'Abuja',
+      addressCountry: 'NG',
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -103,7 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Normal block, not sticky or fixed: scrolls away with the page.
             The nav (fixed) sits offset below it at rest and closes the gap
             once this has scrolled out of view; see Nav.tsx. */}
-        <Ticker variant="dark" direction="rtl" />
+        <Countdown variant="dark" />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Waveform,
 } from '@phosphor-icons/react/dist/ssr';
-import { Counter } from '@/components/Counter';
 import { PhotoSlot } from '@/components/PhotoSlot';
 import { Reveal, RevealWords } from '@/components/Reveal';
 import { usePrefersReducedMotion } from '@/lib/motion';
@@ -18,8 +17,8 @@ import { usePrefersReducedMotion } from '@/lib/motion';
 const FEATURES = [
   {
     icon: CloudCheck,
-    title: 'Sovereign cloud',
-    body: 'Nigerian workloads on Nigerian soil, under Nigerian jurisdiction.',
+    title: 'Cloud infrastructure',
+    body: 'Planned regional cloud capacity, designed for data residency and compliance across the markets we serve.',
   },
   {
     icon: Cpu,
@@ -66,14 +65,15 @@ export function IsatOne() {
     <section id="isat-one" className="bg-night py-section text-white">
       <div className="shell">
         <header className="mx-auto max-w-measure-head text-center">
-          <p className="text-caption font-medium tracking-[0.02em] text-accent">iSAT One&trade;</p>
+          <p className="text-caption font-medium tracking-[0.02em] text-accent">ISAT ONE&trade;</p>
           <RevealWords
-            text={"Africa’s sovereign AI and digital infrastructure platform."}
+            text="ISAT ONE — Building infrastructure for the AI era"
             className="mt-5 text-headline text-balance"
           />
           <p className="mx-auto mt-6 max-w-measure text-lead text-night-muted">
-            One platform underneath the network: compute, storage, security and control, operated
-            in country.
+            Our planned cloud, data-centre and AI infrastructure platform is being developed to
+            support secure, scalable digital services for enterprises, governments and technology
+            ecosystems.
           </p>
         </header>
       </div>
@@ -88,7 +88,7 @@ export function IsatOne() {
               id="isat-one"
               ratio="21/9"
               tone="dark"
-              caption="Sovereign by design. A row of server racks recedes down a data-hall aisle, cable ports lit in red and blue."
+              caption="Built for scale. A row of server racks recedes down a data-hall aisle, cable ports lit in red and blue."
               objectPosition="55% 62%"
             />
           </motion.div>
@@ -113,15 +113,6 @@ export function IsatOne() {
             );
           })}
         </ul>
-
-        <Reveal className="mt-24 text-center">
-          <p className="text-numeral">
-            <Counter to={99.982} decimals={3} suffix="%+" />
-          </p>
-          <p className="mx-auto mt-4 max-w-measure text-body text-night-muted">
-            Target platform availability, backed by redundant power, transport and cooling.
-          </p>
-        </Reveal>
       </div>
     </section>
   );

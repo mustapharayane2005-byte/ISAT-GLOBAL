@@ -44,7 +44,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-government',
     title: 'Government',
-    body: 'Public records and citizen services on sovereign infrastructure inside the country.',
+    body: 'Public records and citizen services on planned in-country infrastructure.',
     photoTitle: 'Services, simplified.',
     caption: "Services, simplified. An aerial view of Abuja's government district and the National Mosque.",
     objectPosition: '50% 45%',

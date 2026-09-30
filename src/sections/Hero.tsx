@@ -116,21 +116,21 @@ export function Hero() {
         <motion.h1
           initial="hidden"
           animate="visible"
-          className="mx-auto max-w-[16ch] text-display text-balance text-ink"
+          className="mx-auto max-w-[18ch] text-balance text-ink"
         >
           <motion.span
             variants={lineVariants}
             transition={reduce ? INSTANT : { ...HEADLINE_TRANSITION, delay: 0 }}
-            className="block"
+            className="block text-display"
           >
-            iSAT 5G.
+            ISAT
           </motion.span>
           <motion.span
             variants={lineVariants}
             transition={reduce ? INSTANT : { ...HEADLINE_TRANSITION, delay: 0.2 }}
-            className="block bg-gradient-to-r from-[#F83A04] to-[#D6181F] bg-clip-text text-transparent"
+            className="block text-headline bg-gradient-to-r from-[#F83A04] to-[#D6181F] bg-clip-text text-transparent"
           >
-            Be free.
+            Connecting Africa to What&rsquo;s Next.
           </motion.span>
         </motion.h1>
 
@@ -141,7 +141,8 @@ export function Hero() {
           transition={reduce ? INSTANT : { ...CASCADE_TRANSITION, delay: 0.65 }}
           className="mx-auto mt-7 max-w-measure-lead text-lead text-ink-muted"
         >
-          Fibre, cloud and AI infrastructure for every Nigerian.
+          ISAT is a digital infrastructure and services company building intelligent connectivity
+          for people, businesses and communities across Africa.
         </motion.p>
 
         <motion.div
@@ -152,16 +153,16 @@ export function Hero() {
           className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-8"
         >
           <Link
-            href="#five-g"
+            href="/about"
             className="inline-flex items-center rounded-pill bg-accent-strong px-7 py-3 text-body font-medium text-white transition-[background-color,transform] duration-200 ease-apple hover:bg-accent-press active:scale-[0.98]"
           >
-            Discover 5G
+            About ISAT
           </Link>
           <Link
             href="#isat-one"
             className="group inline-flex items-center gap-1 text-body font-medium text-accent-strong"
           >
-            Explore iSAT One
+            Explore ISAT ONE
             <CaretRight
               size={14}
               weight="bold"
@@ -169,6 +170,21 @@ export function Hero() {
             />
           </Link>
         </motion.div>
+
+        <motion.ul
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={reduce ? INSTANT : { ...CASCADE_TRANSITION, delay: 0.95 }}
+          className="mx-auto mt-10 grid max-w-xs grid-cols-2 gap-x-6 gap-y-2 text-caption text-ink-muted sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-x-3"
+        >
+          {['5G & Broadband', 'Satellite', 'Cloud & AI', 'Enterprise Data center'].map((item, i) => (
+            <li key={item} className="flex items-center justify-center gap-3 sm:justify-start">
+              {i > 0 ? <span aria-hidden className="hidden text-hairline sm:inline">|</span> : null}
+              <span>{item}</span>
+            </li>
+          ))}
+        </motion.ul>
       </div>
     </section>
   );
