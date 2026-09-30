@@ -66,7 +66,7 @@ export function Hero() {
   }, [videoEnabled]);
 
   return (
-    <section className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden py-28">
+    <section className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden py-32 md:py-40">
       <div className="absolute inset-0 -z-20 bg-canvas" />
 
       {videoEnabled ? (
@@ -116,22 +116,27 @@ export function Hero() {
         <motion.h1
           initial="hidden"
           animate="visible"
-          className="mx-auto max-w-[18ch] text-balance text-ink"
+          className="mx-auto max-w-[1100px] px-5 text-ink"
         >
-          <motion.span
-            variants={lineVariants}
-            transition={reduce ? INSTANT : { ...HEADLINE_TRANSITION, delay: 0 }}
-            className="block text-display"
-          >
-            ISAT
-          </motion.span>
-          <motion.span
-            variants={lineVariants}
-            transition={reduce ? INSTANT : { ...HEADLINE_TRANSITION, delay: 0.2 }}
-            className="block text-headline bg-gradient-to-r from-[#F83A04] to-[#D6181F] bg-clip-text text-transparent"
-          >
-            Connecting Africa to What&rsquo;s Next.
-          </motion.span>
+          <span className="block overflow-hidden pb-[0.15em] leading-[1.08]">
+            <motion.span
+              variants={lineVariants}
+              transition={reduce ? INSTANT : { ...HEADLINE_TRANSITION, delay: 0 }}
+              className="block whitespace-nowrap text-[clamp(4.5rem,11vw,10.5rem)] font-bold leading-[1.02] tracking-[-0.04em]"
+            >
+              ISAT
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden pb-[0.15em] leading-[1.08]">
+            <motion.span
+              variants={lineVariants}
+              transition={reduce ? INSTANT : { ...HEADLINE_TRANSITION, delay: 0.2 }}
+              style={{ textWrap: 'balance' } as React.CSSProperties}
+              className="block bg-gradient-to-r from-[#F83A04] to-[#D6181F] bg-clip-text pb-[0.1em] text-[clamp(2rem,5vw,4.75rem)] font-bold leading-[1.08] tracking-[-0.03em] text-transparent [hyphens:none] [overflow-wrap:normal]"
+            >
+              Connecting Africa to What&rsquo;s Next.
+            </motion.span>
+          </span>
         </motion.h1>
 
         <motion.p
@@ -139,7 +144,7 @@ export function Hero() {
           animate="visible"
           variants={fadeUp}
           transition={reduce ? INSTANT : { ...CASCADE_TRANSITION, delay: 0.65 }}
-          className="mx-auto mt-7 max-w-measure-lead text-lead text-ink-muted"
+          className="mx-auto mt-6 max-w-[820px] px-5 text-lead text-ink-muted"
         >
           ISAT is a digital infrastructure and services company building intelligent connectivity
           for people, businesses and communities across Africa.
@@ -150,7 +155,7 @@ export function Hero() {
           animate="visible"
           variants={fadeUp}
           transition={reduce ? INSTANT : { ...CASCADE_TRANSITION, delay: 0.85 }}
-          className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-8"
+          className="mt-8 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-8"
         >
           <Link
             href="/about"
