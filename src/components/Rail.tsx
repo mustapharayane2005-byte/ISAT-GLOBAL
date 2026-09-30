@@ -56,7 +56,7 @@ function RailCard({
       >
         <PhotoSlot
           id={item.id}
-          ratio="4/5"
+          ratio="3/4"
           caption={item.caption}
           sizes="(max-width: 640px) 78vw, 360px"
           objectPosition={item.objectPosition}

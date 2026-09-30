@@ -19,8 +19,8 @@ const SECTORS: RailItem[] = [
     icon: Factory,
     body: 'Planned private 5G on the factory floor: machine telemetry, automated inspection, no cabling.',
     photoTitle: 'Smarter factories.',
-    caption: 'Smarter factories. A factory worker threads wire through a machine on the shop floor.',
-    objectPosition: '58% 40%',
+    caption: 'Smarter factories. A technician interacts with a robotic arm on the manufacturing floor.',
+    objectPosition: '50% 35%',
   },
   {
     id: 'sector-agriculture',
@@ -28,8 +28,8 @@ const SECTORS: RailItem[] = [
     icon: Sprout,
     body: 'Planned soil and weather sensing across large holdings, with yield models running at the edge.',
     photoTitle: 'Farms that see.',
-    caption: 'Farms that see. An aerial view of cultivated farmland in a patchwork of plots, bordering a town.',
-    objectPosition: '40% 55%',
+    caption: 'Farms that see. A drone flies over cultivated farmland, surveying the crops below.',
+    objectPosition: '50% 35%',
   },
   {
     id: 'sector-education',
@@ -37,8 +37,8 @@ const SECTORS: RailItem[] = [
     icon: GraduationCap,
     body: 'Planned campus-wide connectivity and remote teaching designed to hold up in a full lecture theatre.',
     photoTitle: 'Every classroom, online.',
-    caption: "Every classroom, online. Three students review notes and a laptop together on a campus stairway.",
-    objectPosition: '50% 32%',
+    caption: 'Every classroom, online. Students use laptops together in a university lecture hall.',
+    objectPosition: '50% 30%',
   },
   {
     id: 'sector-healthcare',
@@ -46,7 +46,7 @@ const SECTORS: RailItem[] = [
     icon: Stethoscope,
     body: 'Imaging planned to reach specialists in seconds, and consultations that aim to reach rural clinics.',
     photoTitle: 'Care, at a distance.',
-    caption: 'Care, at a distance. A doctor in a white coat smiles while reviewing a tablet.',
+    caption: 'Care, at a distance. A doctor consults a patient over a telemedicine video call.',
     objectPosition: '50% 25%',
   },
   {
@@ -55,8 +55,8 @@ const SECTORS: RailItem[] = [
     icon: Landmark,
     body: 'Public records and citizen services on planned in-country infrastructure.',
     photoTitle: 'Services, simplified.',
-    caption: "Services, simplified. An aerial view of Abuja's government district and the National Mosque.",
-    objectPosition: '50% 45%',
+    caption: 'Services, simplified. A citizen uses a digital kiosk to access a public service.',
+    objectPosition: '50% 30%',
   },
   {
     id: 'sector-retail',
@@ -64,8 +64,8 @@ const SECTORS: RailItem[] = [
     icon: Store,
     body: 'Planned payments, stock and delivery systems designed to stay up through market-day peaks.',
     photoTitle: 'Every sale, instant.',
-    caption: 'Every sale, instant. A street food vendor takes a phone call while tending his stall.',
-    objectPosition: '58% 30%',
+    caption: 'Every sale, instant. A vendor accepts a mobile payment from a customer at a market stall.',
+    objectPosition: '50% 30%',
   },
 ];
 

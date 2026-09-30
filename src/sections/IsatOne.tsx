@@ -80,13 +80,14 @@ export function IsatOne() {
           <motion.div style={{ y: parallaxY, scale: 1.16 }}>
             <PhotoSlot
               id="isat-one"
-              ratio="21/9"
+              ratio="banner"
               tone="dark"
-              caption="Built for scale. A row of server racks recedes down a data-hall aisle, cable ports lit in red and blue."
-              objectPosition="55% 62%"
+              caption="Built for scale. The exterior of a data-centre building, photographed from its approach."
+              objectPosition="50% 50%"
             />
           </motion.div>
         </div>
+        <p className="mt-3 text-center text-[12px] text-[#6E6E73]">Concept illustration</p>
       </div>
 
       <div className="shell">

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PhotoSlot } from '@/components/PhotoSlot';
 import { Section } from '@/components/Section';
 import { Tabs, type TabItem } from '@/components/Tabs';
 
@@ -103,6 +104,17 @@ const TABS: TabItem[] = [
 export default function AboutPage() {
   return (
     <Section rhythm="tight" className="min-h-[60dvh]">
+      <div className="overflow-hidden rounded-frame">
+        <PhotoSlot
+          id="about-banner"
+          ratio="banner"
+          priority
+          sizes="100vw"
+          caption="Network lines connecting the African continent, a stylised map of digital connectivity."
+          objectPosition="50% 50%"
+        />
+      </div>
+
       <div className="mx-auto max-w-measure-head pt-12 text-center">
         <h1 className="text-headline text-balance">Building the infrastructure for Africa&rsquo;s digital future</h1>
       </div>

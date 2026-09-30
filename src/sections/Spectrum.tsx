@@ -125,10 +125,11 @@ export function Spectrum() {
       <Reveal className="mt-24 md:mt-32">
         <ParallaxPhoto
           id="5g-home"
-          ratio="16/9"
-          caption="Fast at home. A family of three shares a sofa, the father holding a remote and the child seated with his mother."
+          ratio="4/3"
+          caption="Fast at home. A family watches a data-visualization display together in their living room."
           objectPosition="50% 35%"
         />
+        <p className="mt-3 text-center text-[12px] text-[#6E6E73]">Concept illustration</p>
         <p className="mx-auto mt-6 max-w-measure text-center text-body text-ink-muted">
           The same band planned to cover a city could also replace the cable into a home.
         </p>

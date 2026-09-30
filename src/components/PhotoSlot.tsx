@@ -23,6 +23,9 @@ const RATIO_CLASS: Record<PhotoRatio, string> = {
   '3/2': 'aspect-[3/2]',
   '1/1': 'aspect-square',
   '4/5': 'aspect-[4/5]',
+  '3/4': 'aspect-[3/4]',
+  // 16:9 source, cropped to 21:9 on desktop and 4:3 on mobile.
+  banner: 'aspect-[4/3] md:aspect-[21/9]',
 };
 
 export function PhotoSlot({

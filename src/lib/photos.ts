@@ -1,6 +1,6 @@
 import { photoManifest } from './photo-manifest';
 
-export type PhotoRatio = '21/9' | '16/9' | '4/3' | '3/2' | '1/1' | '4/5';
+export type PhotoRatio = '21/9' | '16/9' | '4/3' | '3/2' | '1/1' | '4/5' | '3/4' | 'banner';
 
 /**
  * 8x5 swatch in the surface grey. Inlined rather than computed so the constant
