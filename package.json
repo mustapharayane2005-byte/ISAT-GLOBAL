@@ -8,6 +8,7 @@
     "prebuild": "node scripts/gen-photo-manifest.mjs && node scripts/gen-nigeria-geo.mjs",
     "build": "next build",
     "build:cpanel": "node scripts/build-cpanel.mjs",
+    "zip:cpanel": "node scripts/zip-cpanel.mjs",
     "start": "next start",
     "lint": "next lint"
   },
@@ -31,6 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/topojson-client": "^3.1.5",
+    "archiver": "^8.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
