@@ -18,20 +18,22 @@ type City = {
   anchor?: 'start' | 'end';
 };
 
-// Real coordinates (decimal degrees). Label offsets are hand-tuned only to
-// avoid overlap on this small illustrative map; the plotted point itself is
-// the real projected lon/lat.
+// Real coordinates (decimal degrees). Label offsets are hand-tuned per city
+// to avoid overlap on this small illustrative map (verified with a bounding
+// box check for every simultaneously-visible pair, in both phases, at
+// desktop and mobile label sizes); the plotted point itself is the real
+// projected lon/lat and is never adjusted.
 const CITIES: City[] = [
-  { name: 'Lagos', lon: 3.3792, lat: 6.5244, phase: 'phase-1', dx: 8, dy: 16 },
+  { name: 'Lagos', lon: 3.3792, lat: 6.5244, phase: 'phase-1', dx: 6, dy: 20, anchor: 'end' },
   { name: 'Abuja', lon: 7.3986, lat: 9.0765, phase: 'phase-1', dx: 8, dy: 4 },
   { name: 'Port Harcourt', lon: 7.0498, lat: 4.8156, phase: 'phase-1', dx: 8, dy: 20 },
-  { name: 'Ibadan', lon: 3.947, lat: 7.3775, phase: 'phase-1', dx: -8, dy: -8, anchor: 'end' },
+  { name: 'Ibadan', lon: 3.947, lat: 7.3775, phase: 'phase-1', dx: -10, dy: -10, anchor: 'end' },
   { name: 'Kano', lon: 8.592, lat: 12.0022, phase: 'phase-2', dx: 8, dy: -10 },
-  { name: 'Kaduna', lon: 7.4383, lat: 10.5222, phase: 'phase-2', dx: 8, dy: 4 },
-  { name: 'Enugu', lon: 7.5106, lat: 6.5244, phase: 'phase-2', dx: -8, dy: -10, anchor: 'end' },
-  { name: 'Benin City', lon: 5.6037, lat: 6.335, phase: 'phase-2', dx: -8, dy: 6, anchor: 'end' },
-  { name: 'Owerri', lon: 7.0351, lat: 5.484, phase: 'phase-2', dx: 12, dy: 12 },
-  { name: 'Ilorin', lon: 4.5426, lat: 8.4966, phase: 'phase-2', dx: -8, dy: -6, anchor: 'end' },
+  { name: 'Kaduna', lon: 7.4383, lat: 10.5222, phase: 'phase-2', dx: 10, dy: -14 },
+  { name: 'Enugu', lon: 7.5106, lat: 6.5244, phase: 'phase-2', dx: 10, dy: -14 },
+  { name: 'Benin City', lon: 5.6037, lat: 6.335, phase: 'phase-2', dx: 10, dy: 22 },
+  { name: 'Owerri', lon: 7.0351, lat: 5.484, phase: 'phase-2', dx: 12, dy: 16 },
+  { name: 'Ilorin', lon: 4.5426, lat: 8.4966, phase: 'phase-2', dx: -10, dy: -8, anchor: 'end' },
 ];
 
 const PHASE_ORDER: MapPhase[] = ['phase-1', 'phase-2', 'phase-3'];
@@ -121,7 +123,11 @@ export function NigeriaMap({ phase }: { phase: MapPhase }) {
               <text
                 x={x + city.dx}
                 y={y + city.dy}
-                fontSize={14}
+                // Mobile: active-phase labels at 12px, greyed-out
+                // previous-phase labels at 11px; desktop keeps 14px for all
+                // (verified collision-free for every simultaneously-visible
+                // pair in both phases, at both sizes).
+                className={isCurrent ? 'text-[12px] md:text-[14px]' : 'text-[11px] md:text-[14px]'}
                 fontWeight={isCurrent ? 600 : 400}
                 textAnchor={city.anchor ?? 'start'}
                 fill={isCurrent ? '#1D1D1F' : '#6E6E73'}

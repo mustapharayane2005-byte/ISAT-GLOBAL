@@ -209,9 +209,6 @@ export function Contact() {
           <a href="mailto:Info@isatnigeria.com" className="hover:text-ink">
             Info@isatnigeria.com
           </a>
-          <a href="mailto:partnership@isatnigeria.com" className="hover:text-ink">
-            partnership@isatnigeria.com
-          </a>
         </div>
       </Reveal>
     </Section>

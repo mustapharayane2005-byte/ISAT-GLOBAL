@@ -4,7 +4,11 @@ import Script from 'next/script';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { Countdown } from '@/components/Countdown';
+import { getSiteUrl, isNoIndex } from '@/lib/site';
 import './globals.css';
+
+const siteUrl = getSiteUrl();
+const noIndex = isNoIndex();
 
 const interTight = Inter_Tight({
   subsets: ['latin'],
@@ -13,7 +17,7 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://isat.com.ng'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'ISAT | Connecting Africa to What’s Next',
     template: '%s | ISAT',
@@ -24,11 +28,12 @@ export const metadata: Metadata = {
     title: 'ISAT | Connecting Africa to What’s Next',
     description:
       'ISAT is a digital infrastructure and services company building intelligent connectivity for people, businesses and communities across Africa.',
-    url: 'https://isat.com.ng',
+    url: siteUrl,
     siteName: 'ISAT',
     locale: 'en_NG',
     type: 'website',
   },
+  ...(noIndex ? { robots: { index: false, follow: false } } : {}),
 };
 
 export const viewport: Viewport = {
@@ -41,8 +46,8 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'ISAT',
-  url: 'https://isat.com.ng',
-  logo: 'https://isat.com.ng/images/logo-isat.png',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo-isat.png`,
   telephone: ['+234-708-969-7172', '+234-807-560-6396'],
   email: 'Info@isatnigeria.com',
   address: [
