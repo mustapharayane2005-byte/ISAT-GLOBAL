@@ -20,7 +20,7 @@ const BANDS = [
     band: '3.5 GHz',
     kind: 'n78, the working band',
     summary:
-      'Enough reach to cover a city from ordinary mast spacing, enough spectrum to carry fibre-class speeds. This is where iSAT builds.',
+      'Enough reach to cover a city from ordinary mast spacing, enough spectrum to carry fibre-class speeds. This is where iSAT plans to build.',
     coverage: { value: 75, note: 'City-wide' },
     capacity: { value: 80, note: 'High' },
     highlight: true,
@@ -114,7 +114,7 @@ export function Spectrum() {
           objectPosition="50% 35%"
         />
         <p className="mx-auto mt-6 max-w-measure text-center text-body text-ink-muted">
-          The same band that covers a city also replaces the cable into a home.
+          The same band planned to cover a city could also replace the cable into a home.
         </p>
       </Reveal>
     </Section>

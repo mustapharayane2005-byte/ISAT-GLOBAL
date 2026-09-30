@@ -3,16 +3,16 @@ import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
 
 const OUTCOMES = [
-  { value: '$30B to $50B', label: 'Added to GDP by 2030' },
-  { value: '3M to 5M', label: 'Jobs created, direct and indirect' },
-  { value: '2x to 3x', label: 'Internet speeds for households and businesses' },
+  { value: '$30B to $50B', label: 'Potential contribution to GDP by 2030' },
+  { value: '3M to 5M', label: 'Jobs that could be supported, direct and indirect' },
+  { value: '2x to 3x', label: 'Expected improvement in internet speeds for households and businesses' },
 ];
 
 const SECTORS: RailItem[] = [
   {
     id: 'sector-manufacturing',
     title: 'Manufacturing',
-    body: 'Private 5G on the factory floor: machine telemetry, automated inspection, no cabling.',
+    body: 'Planned private 5G on the factory floor: machine telemetry, automated inspection, no cabling.',
     photoTitle: 'Smarter factories.',
     caption: 'Smarter factories. A factory worker threads wire through a machine on the shop floor.',
     objectPosition: '58% 40%',
@@ -20,7 +20,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-agriculture',
     title: 'Agriculture',
-    body: 'Soil and weather sensing across large holdings, with yield models running at the edge.',
+    body: 'Planned soil and weather sensing across large holdings, with yield models running at the edge.',
     photoTitle: 'Farms that see.',
     caption: 'Farms that see. An aerial view of cultivated farmland in a patchwork of plots, bordering a town.',
     objectPosition: '40% 55%',
@@ -28,7 +28,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-education',
     title: 'Education',
-    body: 'Campus-wide connectivity and remote teaching that holds up in a full lecture theatre.',
+    body: 'Planned campus-wide connectivity and remote teaching designed to hold up in a full lecture theatre.',
     photoTitle: 'Every classroom, online.',
     caption: "Every classroom, online. Three students review notes and a laptop together on a campus stairway.",
     objectPosition: '50% 32%',
@@ -36,7 +36,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-healthcare',
     title: 'Healthcare',
-    body: 'Imaging moved to specialists in seconds, and consultations that reach rural clinics.',
+    body: 'Imaging planned to reach specialists in seconds, and consultations that aim to reach rural clinics.',
     photoTitle: 'Care, at a distance.',
     caption: 'Care, at a distance. A doctor in a white coat smiles while reviewing a tablet.',
     objectPosition: '50% 25%',
@@ -52,7 +52,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-retail',
     title: 'Retail',
-    body: 'Payments, stock and delivery systems that stay up through market-day peaks.',
+    body: 'Planned payments, stock and delivery systems designed to stay up through market-day peaks.',
     photoTitle: 'Every sale, instant.',
     caption: 'Every sale, instant. A street food vendor takes a phone call while tending his stall.',
     objectPosition: '58% 30%',
@@ -64,10 +64,12 @@ export function Impact() {
     <Section id="impact">
       <SectionHead
         title="What a national network is worth"
-        lead="Independent build-out of this scale changes the arithmetic of every sector that depends on connectivity."
+        lead="Independent build-out of this scale could change the arithmetic of every sector that depends on connectivity."
       />
 
-      <ul className="mt-20 border-t border-hairline">
+      <p className="mt-16 text-center text-caption font-semibold text-[#D6181F]">Projected impact</p>
+
+      <ul className="mt-6 border-t border-hairline">
         {OUTCOMES.map((outcome, i) => (
           <Reveal
             as="li"
@@ -80,6 +82,11 @@ export function Impact() {
           </Reveal>
         ))}
       </ul>
+
+      <p className="mx-auto mt-6 max-w-measure text-center text-[13px] text-ink-muted">
+        Projections are estimates based on ISAT&rsquo;s planning assumptions and are not guarantees of
+        future results.
+      </p>
 
       <div className="mt-24">
         <h3 className="text-title">Six sectors, one network.</h3>

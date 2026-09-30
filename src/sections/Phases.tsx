@@ -32,7 +32,7 @@ const PHASES: Phase[] = [
     label: 'Phase 2',
     window: '13 to 24 months',
     summary:
-      'The network moves inland. Six commercial centres come online, linked by long-haul fibre to the coastal landing points.',
+      'The network will move inland. Six commercial centres will come online, linked by long-haul fibre to the coastal landing points.',
     cities: ['Kano', 'Kaduna', 'Enugu', 'Benin', 'Owerri', 'Ilorin'],
     photo: {
       id: 'phase-2',
@@ -46,7 +46,7 @@ const PHASES: Phase[] = [
     label: 'Phase 3',
     window: '25 to 36 months',
     summary:
-      'Every state capital and the regional cities between them, completing national coverage of the 3.5 GHz layer.',
+      'Every state capital and the regional cities between them, to complete national coverage of the 3.5 GHz layer.',
     cities: ['All 36 state capitals', 'Regional cities nationwide'],
     photo: {
       id: 'phase-3',
@@ -101,7 +101,7 @@ export function Phases() {
     <Section id="coverage" tone="surface">
       <SectionHead
         title="Three phases. One nation."
-        lead="A thirty-six month build, sequenced so that each phase pays for the next."
+        lead="A thirty-six month build, sequenced so that each phase will pay for the next."
         className="mb-14"
       />
       <Tabs items={items} ariaLabel="Network build phases" track="canvas" />

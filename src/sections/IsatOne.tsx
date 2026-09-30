@@ -23,27 +23,27 @@ const FEATURES = [
   {
     icon: Cpu,
     title: 'AI and GPU computing',
-    body: 'Training and inference capacity for research, industry and public services.',
+    body: 'Planned training and inference capacity for research, industry and public services.',
   },
   {
     icon: Broadcast,
     title: 'Edge computing',
-    body: 'Compute placed beside the radio, so latency-bound work stays local.',
+    body: 'Compute planned beside the radio, so latency-bound work will stay local.',
   },
   {
     icon: ShieldCheck,
     title: 'Cybersecurity operations',
-    body: 'A round-the-clock security operations centre defending the platform and its tenants.',
+    body: 'A planned round-the-clock security operations centre to defend the platform and its tenants.',
   },
   {
     icon: Waveform,
     title: 'Network operations',
-    body: 'One control plane watching radio, transport and core across every site.',
+    body: 'A planned control plane to watch radio, transport and core across every site.',
   },
   {
     icon: Bank,
     title: 'Financial-sector cloud',
-    body: 'An isolated environment built to the controls Nigerian banks and regulators expect.',
+    body: 'A planned isolated environment, designed to meet the controls Nigerian banks and regulators expect.',
   },
 ];
 
