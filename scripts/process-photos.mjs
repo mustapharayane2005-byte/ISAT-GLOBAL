@@ -1,5 +1,5 @@
 /**
- * One-off processing pass for the photography drop in public/images/originals/.
+ * One-off processing pass for the photography drop in photo-archive/originals/.
  * Detects and trims any solid-color parasitic border (screenshot chrome,
  * letterboxing), then resizes (never upscales) and writes {id}.webp at quality 85.
  * Run with: node scripts/process-photos.mjs
@@ -10,7 +10,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const originalsDir = join(root, 'public', 'images', 'originals');
+const originalsDir = join(root, 'photo-archive', 'originals');
 const outDir = join(root, 'public', 'images');
 
 // filename (without extension, trailing period included) -> slot id
