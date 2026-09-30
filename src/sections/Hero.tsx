@@ -179,15 +179,26 @@ export function Hero() {
         <motion.ul
           initial="hidden"
           animate="visible"
-          variants={fadeUp}
-          transition={reduce ? INSTANT : { ...CASCADE_TRANSITION, delay: 0.95 }}
-          className="mx-auto mt-10 grid max-w-xs grid-cols-2 gap-x-6 gap-y-2 text-caption text-ink-muted sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-x-3"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: reduce ? 0 : 0.08, delayChildren: reduce ? 0 : 0.95 },
+            },
+          }}
+          className="mx-auto mt-10 grid max-w-xs grid-cols-2 gap-[14px] sm:flex sm:max-w-none sm:flex-wrap sm:justify-center"
         >
-          {['5G & Broadband', 'Satellite', 'Cloud & AI', 'Enterprise Data center'].map((item, i) => (
-            <li key={item} className="flex items-center justify-center gap-3 sm:justify-start">
-              {i > 0 ? <span aria-hidden className="hidden text-hairline sm:inline">|</span> : null}
+          {['5G & Broadband', 'Satellite', 'Cloud & AI', 'Enterprise Data center'].map((item) => (
+            <motion.li
+              key={item}
+              variants={fadeUp}
+              transition={reduce ? INSTANT : CASCADE_TRANSITION}
+              className={`flex items-center justify-center gap-2 rounded-pill border border-[#E5E5E7] bg-white px-5 py-3 text-[16px] font-semibold text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-[transform,border-color] duration-[250ms] sm:px-[26px] sm:py-[14px] sm:text-[18px] ${
+                reduce ? '' : 'md:hover:-translate-y-0.5 md:hover:border-[#D6181F]'
+              }`}
+            >
+              <span aria-hidden className="h-2 w-2 shrink-0 rounded-full bg-accent" />
               <span>{item}</span>
-            </li>
+            </motion.li>
           ))}
         </motion.ul>
       </div>
