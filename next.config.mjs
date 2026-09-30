@@ -1,8 +1,17 @@
+const isCpanelBuild = process.env.BUILD_TARGET === 'cpanel';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
+    ...(isCpanelBuild ? { unoptimized: true } : {}),
   },
+  ...(isCpanelBuild
+    ? {
+        output: 'export',
+        trailingSlash: true,
+      }
+    : {}),
   async headers() {
     return [
       {

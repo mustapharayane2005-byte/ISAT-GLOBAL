@@ -7,6 +7,11 @@ import { Section } from '@/components/Section';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
+// The cPanel static export can't host the Next.js API route, so that build
+// posts to the PHP handler instead. Same payload shape either way.
+const CONTACT_ENDPOINT =
+  process.env.NEXT_PUBLIC_BUILD_TARGET === 'cpanel' ? '/contact.php' : '/api/contact';
+
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +26,7 @@ export function Contact() {
     setErrorMessage('');
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
