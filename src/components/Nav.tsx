@@ -115,11 +115,10 @@ export function Nav() {
         // top-9 (36px) is the SSR/pre-hydration fallback, matching the
         // un-scrolled Framer target exactly, so there's nothing to correct
         // once JS takes over: the ticker sits above at the same height.
-        // Solid white, not translucent: a blurred/translucent bar over the
-        // black ISAT ONE section picked up that black backdrop, which is
-        // what made the bar look dark with the logo hard to see once the
-        // Impact link (right after that section) became active.
-        className="fixed inset-x-0 top-9 z-50 w-full border-b border-hairline/60 bg-white"
+        // High-opacity white + blur keeps the bar reading as white and the
+        // logo legible even over the black ISAT ONE section, while still
+        // being visibly translucent everywhere else (e.g. Impact).
+        className="fixed inset-x-0 top-9 z-50 w-full border-b border-hairline/60 bg-white/90 backdrop-blur-xl backdrop-saturate-150"
       >
         <nav
           aria-label="Main"

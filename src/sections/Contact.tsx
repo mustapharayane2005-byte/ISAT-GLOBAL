@@ -1,8 +1,56 @@
+'use client';
+
+import { useRef, useState } from 'react';
 import { MapPinIcon } from '@/components/MapPinIcon';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
 
+type Status = 'idle' | 'sending' | 'success' | 'error';
+
 export function Contact() {
+  const [status, setStatus] = useState<Status>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const startedAtRef = useRef<number>(Date.now());
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          phone: data.get('phone'),
+          company: data.get('company'),
+          message: data.get('message'),
+          company_website: data.get('company_website'),
+          startedAt: startedAtRef.current,
+        }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setErrorMessage(json.error || 'Something went wrong. Please try again.');
+        setStatus('error');
+        return;
+      }
+
+      setStatus('success');
+      form.reset();
+    } catch {
+      setErrorMessage('Something went wrong. Please try again.');
+      setStatus('error');
+    }
+  }
+
   return (
     <Section id="contact" tone="surface">
       <Reveal className="mx-auto max-w-measure-lead text-center">
@@ -11,13 +59,107 @@ export function Contact() {
           Operators, governments, lenders and enterprise partners: the build is open to
           collaboration at every layer.
         </p>
-        <a
-          href="mailto:partnership@isatnigeria.com"
-          className="mt-10 inline-flex items-center rounded-pill bg-accent-strong px-7 py-3 text-body font-medium text-white transition-[background-color,transform] duration-200 ease-apple hover:bg-accent-press active:scale-[0.98]"
-        >
-          Contact us
-        </a>
-        <p className="mt-6 text-caption text-ink-muted">partnership@isatnigeria.com</p>
+
+        {status === 'success' ? (
+          <p role="status" aria-live="polite" className="mt-10 text-body font-medium text-ink">
+            Thanks — your message has been sent. We&rsquo;ll be in touch soon.
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-lg text-left" noValidate>
+            {/* Honeypot: hidden from real visitors, invisible to screen readers. */}
+            <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+              <label htmlFor="company_website">Leave this field empty</label>
+              <input
+                id="company_website"
+                name="company_website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="sm:col-span-1">
+                <label htmlFor="name" className="text-caption font-medium text-ink">
+                  Name*
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  maxLength={200}
+                  className="mt-2 w-full rounded-frame border border-hairline bg-canvas px-4 py-3 text-body text-ink outline-none focus:border-accent-strong"
+                />
+              </div>
+              <div className="sm:col-span-1">
+                <label htmlFor="email" className="text-caption font-medium text-ink">
+                  Email*
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={320}
+                  className="mt-2 w-full rounded-frame border border-hairline bg-canvas px-4 py-3 text-body text-ink outline-none focus:border-accent-strong"
+                />
+              </div>
+              <div className="sm:col-span-1">
+                <label htmlFor="phone" className="text-caption font-medium text-ink">
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  maxLength={50}
+                  className="mt-2 w-full rounded-frame border border-hairline bg-canvas px-4 py-3 text-body text-ink outline-none focus:border-accent-strong"
+                />
+              </div>
+              <div className="sm:col-span-1">
+                <label htmlFor="company" className="text-caption font-medium text-ink">
+                  Company
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  maxLength={200}
+                  className="mt-2 w-full rounded-frame border border-hairline bg-canvas px-4 py-3 text-body text-ink outline-none focus:border-accent-strong"
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="message" className="text-caption font-medium text-ink">
+                  Message*
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  minLength={10}
+                  maxLength={2000}
+                  rows={5}
+                  className="mt-2 w-full rounded-frame border border-hairline bg-canvas px-4 py-3 text-body text-ink outline-none focus:border-accent-strong"
+                />
+              </div>
+            </div>
+
+            {status === 'error' ? (
+              <p role="alert" aria-live="assertive" className="mt-4 text-caption font-medium text-[#D6181F]">
+                {errorMessage}
+              </p>
+            ) : null}
+
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className="mt-6 inline-flex items-center rounded-pill bg-accent-strong px-7 py-3 text-body font-medium text-white transition-[background-color,transform] duration-200 ease-apple hover:bg-accent-press active:scale-[0.98] disabled:opacity-60"
+            >
+              {status === 'sending' ? 'Sending…' : 'Send message'}
+            </button>
+          </form>
+        )}
 
         <div className="mt-12 flex flex-col items-center gap-8 border-t border-hairline pt-10 sm:flex-row sm:justify-center sm:gap-16">
           {[
@@ -50,6 +192,21 @@ export function Contact() {
               </a>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-1 text-caption text-ink-muted sm:flex-row sm:justify-center sm:gap-6">
+          <a href="tel:+2347089697172" className="hover:text-ink">
+            +234 708 969 7172
+          </a>
+          <a href="tel:+2348075606396" className="hover:text-ink">
+            +234 807 560 6396
+          </a>
+          <a href="mailto:Info@isatnigeria.com" className="hover:text-ink">
+            Info@isatnigeria.com
+          </a>
+          <a href="mailto:partnership@isatnigeria.com" className="hover:text-ink">
+            partnership@isatnigeria.com
+          </a>
         </div>
       </Reveal>
     </Section>
