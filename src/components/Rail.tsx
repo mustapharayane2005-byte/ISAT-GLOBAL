@@ -2,6 +2,8 @@
 
 import { useRef, type RefObject } from 'react';
 import { motion, useInView } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
+import { IconTile } from '@/components/IconTile';
 import { PhotoSlot } from '@/components/PhotoSlot';
 import { EASE, usePrefersReducedMotion } from '@/lib/motion';
 import { photoSrc } from '@/lib/photos';
@@ -14,6 +16,7 @@ export type RailItem = {
   /** The photo's own title (e.g. "Farms that see."), shown as a caption on the tile itself. */
   photoTitle: string;
   objectPosition?: string;
+  icon?: LucideIcon;
 };
 
 function RailCard({
@@ -67,6 +70,7 @@ function RailCard({
           </div>
         ) : null}
       </motion.div>
+      {item.icon ? <IconTile icon={item.icon} className="-mb-1 mt-5" /> : null}
       <h3 className="mt-5 text-body font-semibold">{item.title}</h3>
       <p className="mt-2 text-body text-ink-muted">{item.body}</p>
     </motion.li>

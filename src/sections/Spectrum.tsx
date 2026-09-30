@@ -106,6 +106,22 @@ export function Spectrum() {
         })}
       </div>
 
+      <Reveal className="mt-20">
+        <ul className="mx-auto grid max-w-measure-head grid-cols-2 gap-x-8 gap-y-4 text-body text-ink-muted sm:flex sm:flex-wrap sm:justify-center sm:gap-x-10">
+          {[
+            'High capacity',
+            'Wide coverage',
+            'Low latency',
+            'Suited to fixed wireless access, campus networks and private 5G',
+          ].map((line) => (
+            <li key={line} className="flex items-center gap-2">
+              <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+              {line}
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+
       <Reveal className="mt-24 md:mt-32">
         <ParallaxPhoto
           id="5g-home"

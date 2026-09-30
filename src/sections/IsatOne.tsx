@@ -2,21 +2,15 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-  Bank,
-  Broadcast,
-  CloudCheck,
-  Cpu,
-  ShieldCheck,
-  Waveform,
-} from '@phosphor-icons/react/dist/ssr';
+import { AudioWaveform, Cloud, Cpu, Landmark, RadioTower, ShieldCheck } from 'lucide-react';
+import { IconTile } from '@/components/IconTile';
 import { PhotoSlot } from '@/components/PhotoSlot';
 import { Reveal, RevealWords } from '@/components/Reveal';
 import { usePrefersReducedMotion } from '@/lib/motion';
 
 const FEATURES = [
   {
-    icon: CloudCheck,
+    icon: Cloud,
     title: 'Cloud infrastructure',
     body: 'Planned regional cloud capacity, designed for data residency and compliance across the markets we serve.',
   },
@@ -26,7 +20,7 @@ const FEATURES = [
     body: 'Planned training and inference capacity for research, industry and public services.',
   },
   {
-    icon: Broadcast,
+    icon: RadioTower,
     title: 'Edge computing',
     body: 'Compute planned beside the radio, so latency-bound work will stay local.',
   },
@@ -36,12 +30,12 @@ const FEATURES = [
     body: 'A planned round-the-clock security operations centre to defend the platform and its tenants.',
   },
   {
-    icon: Waveform,
+    icon: AudioWaveform,
     title: 'Network operations',
     body: 'A planned control plane to watch radio, transport and core across every site.',
   },
   {
-    icon: Bank,
+    icon: Landmark,
     title: 'Financial-sector cloud',
     body: 'A planned isolated environment, designed to meet the controls Nigerian banks and regulators expect.',
   },
@@ -106,7 +100,7 @@ export function IsatOne() {
                 delay={(i % 3) * 0.08}
                 className="border-t border-night-hairline pt-6"
               >
-                <Icon size={26} weight="light" className="text-accent" aria-hidden />
+                <IconTile icon={Icon} />
                 <h3 className="mt-5 text-body font-semibold">{feature.title}</h3>
                 <p className="mt-2 max-w-measure text-body text-night-muted">{feature.body}</p>
               </Reveal>

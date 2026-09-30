@@ -1,3 +1,6 @@
+'use client';
+
+import { Factory, GraduationCap, Landmark, Sprout, Stethoscope, Store } from 'lucide-react';
 import { Rail, type RailItem } from '@/components/Rail';
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
@@ -6,12 +9,14 @@ const OUTCOMES = [
   { value: '$30B to $50B', label: 'Potential contribution to GDP by 2030' },
   { value: '3M to 5M', label: 'Jobs that could be supported, direct and indirect' },
   { value: '2x to 3x', label: 'Expected improvement in internet speeds for households and businesses' },
+  { value: '$5B to $10B', label: 'Potential annual productivity gains' },
 ];
 
 const SECTORS: RailItem[] = [
   {
     id: 'sector-manufacturing',
     title: 'Manufacturing',
+    icon: Factory,
     body: 'Planned private 5G on the factory floor: machine telemetry, automated inspection, no cabling.',
     photoTitle: 'Smarter factories.',
     caption: 'Smarter factories. A factory worker threads wire through a machine on the shop floor.',
@@ -20,6 +25,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-agriculture',
     title: 'Agriculture',
+    icon: Sprout,
     body: 'Planned soil and weather sensing across large holdings, with yield models running at the edge.',
     photoTitle: 'Farms that see.',
     caption: 'Farms that see. An aerial view of cultivated farmland in a patchwork of plots, bordering a town.',
@@ -28,6 +34,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-education',
     title: 'Education',
+    icon: GraduationCap,
     body: 'Planned campus-wide connectivity and remote teaching designed to hold up in a full lecture theatre.',
     photoTitle: 'Every classroom, online.',
     caption: "Every classroom, online. Three students review notes and a laptop together on a campus stairway.",
@@ -36,6 +43,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-healthcare',
     title: 'Healthcare',
+    icon: Stethoscope,
     body: 'Imaging planned to reach specialists in seconds, and consultations that aim to reach rural clinics.',
     photoTitle: 'Care, at a distance.',
     caption: 'Care, at a distance. A doctor in a white coat smiles while reviewing a tablet.',
@@ -44,6 +52,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-government',
     title: 'Government',
+    icon: Landmark,
     body: 'Public records and citizen services on planned in-country infrastructure.',
     photoTitle: 'Services, simplified.',
     caption: "Services, simplified. An aerial view of Abuja's government district and the National Mosque.",
@@ -52,6 +61,7 @@ const SECTORS: RailItem[] = [
   {
     id: 'sector-retail',
     title: 'Retail',
+    icon: Store,
     body: 'Planned payments, stock and delivery systems designed to stay up through market-day peaks.',
     photoTitle: 'Every sale, instant.',
     caption: 'Every sale, instant. A street food vendor takes a phone call while tending his stall.',
