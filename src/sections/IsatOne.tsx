@@ -41,6 +41,17 @@ const FEATURES = [
   },
 ];
 
+const USERS = [
+  'Banking and payments',
+  'Fintech',
+  'Government',
+  'Telecom operators',
+  'AI companies',
+  'Healthcare',
+  'Education',
+  'Smart cities',
+];
+
 export function IsatOne() {
   const reduce = usePrefersReducedMotion();
   const photoRef = useRef<HTMLDivElement>(null);
@@ -108,6 +119,21 @@ export function IsatOne() {
             );
           })}
         </ul>
+
+        <Reveal className="mt-20 text-center">
+          <h3 className="text-title">Planned strategic users</h3>
+          <ul className="mt-8 flex flex-wrap justify-center gap-3">
+            {USERS.map((user) => (
+              <li
+                key={user}
+                className="rounded-full border border-hairline bg-white px-4 py-2 text-caption font-medium text-[#1D1D1F]"
+              >
+                {user}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-caption text-night-muted">Planned audiences for ISAT ONE services.</p>
+        </Reveal>
       </div>
     </section>
   );

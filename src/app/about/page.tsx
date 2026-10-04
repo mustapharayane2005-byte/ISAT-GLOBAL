@@ -20,6 +20,13 @@ const APPROACH_LAYERS = [
   'Intelligent digital platforms',
 ];
 
+const COMMITMENTS = [
+  { title: 'Sustainable investment', body: 'ISAT aims to invest in infrastructure built to last.' },
+  { title: 'Inclusive growth', body: 'ISAT aims to bring more people and businesses into the digital economy.' },
+  { title: 'Long-term value', body: 'ISAT aims to create value that endures beyond the build.' },
+  { title: 'National impact', body: 'ISAT aims to contribute to Nigeria’s digital progress.' },
+];
+
 function Prose({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto max-w-measure-head space-y-6 text-body text-ink-muted">{children}</div>;
 }
@@ -78,6 +85,15 @@ const TABS: TabItem[] = [
               className="rounded-frame border border-hairline bg-surface px-5 py-4 text-body font-medium text-ink"
             >
               {layer}
+            </li>
+          ))}
+        </ul>
+        <h3 className="pt-6 text-title text-ink">Our commitments</h3>
+        <ul className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+          {COMMITMENTS.map((c) => (
+            <li key={c.title} className="border-t border-hairline pt-4">
+              <p className="text-body font-semibold text-ink">{c.title}</p>
+              <p className="mt-1 text-body text-ink-muted">{c.body}</p>
             </li>
           ))}
         </ul>

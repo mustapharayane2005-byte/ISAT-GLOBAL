@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
+import { Expand, Radio, Timer, Wifi } from 'lucide-react';
 import { Gauge } from '@/components/Gauge';
 import { ParallaxPhoto } from '@/components/ParallaxPhoto';
 import { Reveal } from '@/components/Reveal';
@@ -33,6 +34,13 @@ const BANDS = [
     capacity: { value: 98, note: 'Highest' },
     highlight: false,
   },
+];
+
+const ENABLES = [
+  { icon: Expand, line: 'High capacity' },
+  { icon: Radio, line: 'Wide coverage' },
+  { icon: Timer, line: 'Low latency' },
+  { icon: Wifi, line: 'Suited to fixed wireless access, campus networks, private 5G and industrial IoT' },
 ];
 
 export function Spectrum() {
@@ -107,19 +115,18 @@ export function Spectrum() {
       </div>
 
       <Reveal className="mt-20">
-        <ul className="mx-auto grid max-w-measure-head grid-cols-2 gap-x-8 gap-y-4 text-body text-ink-muted sm:flex sm:flex-wrap sm:justify-center sm:gap-x-10">
-          {[
-            'High capacity',
-            'Wide coverage',
-            'Low latency',
-            'Suited to fixed wireless access, campus networks and private 5G',
-          ].map((line) => (
-            <li key={line} className="flex items-center gap-2">
-              <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-              {line}
+        <h3 className="text-center text-title">What 3.5 GHz is expected to enable</h3>
+        <ul className="mx-auto mt-10 grid max-w-measure-head gap-x-8 gap-y-6 sm:grid-cols-2">
+          {ENABLES.map(({ icon: Icon, line }) => (
+            <li key={line} className="flex items-start gap-4 border-t border-hairline pt-5">
+              <Icon size={22} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#D6181F]" aria-hidden />
+              <p className="text-body text-ink-muted">{line}</p>
             </li>
           ))}
         </ul>
+        <p className="mt-8 text-center text-body text-ink-muted">
+          Aligned with global 5G standards and future 6G evolution.
+        </p>
       </Reveal>
 
       <Reveal className="mt-24 md:mt-32">

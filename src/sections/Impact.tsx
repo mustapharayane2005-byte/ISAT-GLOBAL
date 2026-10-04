@@ -1,6 +1,17 @@
 'use client';
 
-import { Factory, GraduationCap, Landmark, Sprout, Stethoscope, Store } from 'lucide-react';
+import {
+  Building,
+  Factory,
+  GraduationCap,
+  HeartPulse,
+  Landmark,
+  ShieldCheck,
+  Sprout,
+  Stethoscope,
+  Store,
+  Users,
+} from 'lucide-react';
 import { Rail, type RailItem } from '@/components/Rail';
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
@@ -10,6 +21,17 @@ const OUTCOMES = [
   { value: '3M to 5M', label: 'Jobs that could be supported, direct and indirect' },
   { value: '2x to 3x', label: 'Expected improvement in internet speeds for households and businesses' },
   { value: '$5B to $10B', label: 'Potential annual productivity gains' },
+];
+
+const POTENTIAL = [
+  { icon: Building, title: 'Smarter cities', body: 'potential for intelligent transport, energy and waste management' },
+  { icon: Users, title: 'Digital inclusion', body: 'potential to bring more people to opportunities' },
+  { icon: HeartPulse, title: 'Better healthcare', body: 'potential for telemedicine and remote diagnostics' },
+  {
+    icon: ShieldCheck,
+    title: 'Stronger national security',
+    body: 'potential for secure communications and critical infrastructure protection',
+  },
 ];
 
 const SECTORS: RailItem[] = [
@@ -97,6 +119,25 @@ export function Impact() {
         Projections are estimates based on ISAT&rsquo;s planning assumptions and are not guarantees of
         future results.
       </p>
+
+      <ul className="mt-16 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+        {POTENTIAL.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <Reveal
+              as="li"
+              key={item.title}
+              delay={(i % 2) * 0.08}
+              className="flex items-start gap-4 border-t border-hairline pt-5"
+            >
+              <Icon size={22} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#D6181F]" aria-hidden />
+              <p className="text-body text-ink-muted">
+                <span className="font-semibold text-ink">{item.title}</span>, {item.body}
+              </p>
+            </Reveal>
+          );
+        })}
+      </ul>
 
       <div className="mt-24">
         <h3 className="text-title">Six sectors, one network.</h3>

@@ -46,6 +46,11 @@ const PHASES: Phase[] = [
     summary:
       'The network will move inland. Six commercial centres will come online, linked by long-haul fibre to the coastal landing points.',
     cities: ['Kano', 'Kaduna', 'Enugu', 'Benin', 'Owerri', 'Ilorin'],
+    targets: [
+      'Expanded 5G coverage to major cities',
+      'Scaled fibre backbone and edge infrastructure',
+      'Enterprise, industrial and smart city solutions',
+    ],
   },
   {
     id: 'phase-3',
@@ -54,6 +59,11 @@ const PHASES: Phase[] = [
     summary:
       'Every state capital and the regional cities between them, to complete national coverage of the 3.5 GHz layer.',
     cities: ['All 36 state capitals', 'Regional cities nationwide'],
+    targets: [
+      'Nationwide 5G in urban and high-demand areas',
+      'Fibre extended to all states and key corridors',
+      'Advanced 5G applications such as IoT, AI, XR and smart cities',
+    ],
   },
 ];
 
@@ -90,7 +100,9 @@ function PhasePanel({ phase }: { phase: Phase }) {
 
         {phase.targets ? (
           <div className="mt-10">
-            <p className="text-caption font-medium text-ink">First 12 months, planned targets</p>
+            <p className="text-caption font-medium text-ink">
+              {phase.id === 'phase-1' ? 'First 12 months, planned targets' : 'Planned targets'}
+            </p>
             <ul className="mt-4 space-y-3">
               {phase.targets.map((target) => (
                 <li key={target} className="flex items-start gap-3 text-body text-ink-muted">
