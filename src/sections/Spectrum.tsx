@@ -54,7 +54,7 @@ export function Spectrum() {
   return (
     <Section id="five-g">
       <SectionHead
-        title="The sweet spot of 5G"
+        title="Why 3.5 GHz for 5G"
         lead="Spectrum forces a trade between how far a signal reaches and how much it carries. One band refuses to choose."
       />
 
