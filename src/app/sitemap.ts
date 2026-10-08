@@ -20,5 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/about`,
       lastModified,
     },
+    {
+      url: `${siteUrl}/leadership`,
+      lastModified,
+    },
   ];
 }

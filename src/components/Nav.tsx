@@ -9,6 +9,7 @@ import { EASE, usePrefersReducedMotion } from '@/lib/motion';
 
 const LINKS = [
   { label: 'About', href: '/about', id: 'about' },
+  { label: 'Our People', href: '/leadership', id: 'leadership' },
   { label: '5G', href: '/#five-g', id: 'five-g' },
   { label: 'Coverage', href: '/#coverage', id: 'coverage' },
   { label: 'iSAT One', href: '/#isat-one', id: 'isat-one' },

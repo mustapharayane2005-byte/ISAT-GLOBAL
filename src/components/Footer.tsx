@@ -23,6 +23,7 @@ const COLUMNS = [
     heading: 'Company',
     links: [
       { label: 'About', href: '/about' },
+      { label: 'The People Behind iSAT', href: '/leadership' },
       { label: 'Partnerships', href: 'mailto:Info@isatnigeria.com' },
       { label: 'Call +234 708 969 7172', href: 'tel:+2347089697172' },
     ],

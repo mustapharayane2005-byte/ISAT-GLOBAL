@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { PhotoSlot } from '@/components/PhotoSlot';
 import { Section } from '@/components/Section';
 import { Tabs, type TabItem } from '@/components/Tabs';
@@ -134,6 +135,13 @@ export default function AboutPage() {
       <div className="mx-auto max-w-measure-head pt-12 text-center">
         <h1 className="text-headline text-balance">Building the infrastructure for Africa&rsquo;s digital future</h1>
       </div>
+
+      <Link
+        href="/leadership"
+        className="mx-auto mt-10 flex w-fit items-center gap-2 rounded-pill border border-hairline bg-surface px-5 py-2.5 text-body font-medium text-ink transition-colors duration-200 ease-apple hover:border-[#F83A04] hover:text-[#F83A04]"
+      >
+        The People Behind iSAT <span aria-hidden>&rarr;</span>
+      </Link>
 
       <div className="mt-14">
         <Tabs items={TABS} ariaLabel="About ISAT" track="canvas" />
