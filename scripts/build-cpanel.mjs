@@ -46,8 +46,8 @@ try {
       ...process.env,
       BUILD_TARGET: 'cpanel',
       NEXT_PUBLIC_BUILD_TARGET: 'cpanel',
-      NEXT_PUBLIC_NOINDEX: 'true',
-      NEXT_PUBLIC_SITE_URL: 'https://new.isatnigeria.com',
+      NEXT_PUBLIC_NOINDEX: 'false',
+      NEXT_PUBLIC_SITE_URL: 'https://isatnigeria.com',
     },
   });
 } finally {

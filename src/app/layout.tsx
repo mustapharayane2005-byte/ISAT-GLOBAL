@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   },
   description:
     'ISAT is a digital infrastructure and services company building intelligent connectivity for people, businesses and communities across Africa.',
+  alternates: { canonical: './' },
   openGraph: {
     title: 'ISAT | Connecting Africa to What’s Next',
     description:

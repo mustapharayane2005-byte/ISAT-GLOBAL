@@ -1,6 +1,6 @@
-# Deploying to cPanel (new.isatnigeria.com)
+# Deploying to cPanel (isatnigeria.com)
 
-This zip (`isat-site-cpanel.zip`) is a static+PHP build of this site meant to be deployed at the ROOT of the `new.isatnigeria.com` subdomain's document root — it is entirely separate from and does not affect the existing Vercel deployment, which keeps using `npm run build` unchanged.
+This zip (`isat-site-cpanel.zip`) is a static+PHP build of this site meant to be deployed at the ROOT of the `isatnigeria.com` subdomain's document root — it is entirely separate from and does not affect the existing Vercel deployment, which keeps using `npm run build` unchanged.
 To rebuild it locally: run `npm run build:cpanel` (regenerates `out/`, temporarily hiding the API route so the static export succeeds), then re-zip the contents of `out/` (not the `out/` folder itself) into `isat-site-cpanel.zip`.
 Deploy by unzipping the archive's contents directly into the subdomain's document root via cPanel File Manager or FTP, so `index.html`, `.htaccess`, `contact.php`, `about/`, `_next/`, `images/`, `videos/` etc. sit at the root, not nested in an `out/` folder.
 `contact.php` needs no configuration, API keys, or secrets — it sends mail via PHP's built-in `mail()` function to `Info@isatnigeria.com`.
