@@ -10,15 +10,6 @@ export const metadata: Metadata = {
 
 const LEADERS = [
   {
-    name: 'Dr. Abdullah Adeyanju Binuyo, PhD',
-    title: 'Managing Director/CEO',
-    image: '/images/leadership/abdullah-binuyo.webp',
-    width: 1157,
-    height: 1280,
-    position: '50% 15%',
-    bio: 'Dr. Adeyanju Binuyo is a technology executive and strategist with over two decades of experience across digital infrastructure, telecoms, public policy and sustainable development. As MD/CEO of ISAT Global Services, he leads its evolution into an AI-native digital infrastructure and services platform, advancing next-generation connectivity, 5G, satellite, cloud and enterprise solutions across Nigeria and Africa. He is an alumnus of the University of Lagos, with executive education from the University of London and University of Oxford, and holds a PhD in Sustainable Development.',
-  },
-  {
     name: 'Sir Ganiyou Afolabi Moustapha',
     title: 'Chairman, ISAT Global Services Ltd.',
     image: '/images/leadership/ganiyou-moustapha.webp',
@@ -26,6 +17,15 @@ const LEADERS = [
     height: 1232,
     position: '50% 22%',
     bio: "Sir Ganiyou Afolabi Moustapha is a distinguished entrepreneur and strategic business leader with over two decades of experience spanning oil and gas, logistics and international commodity trading. As Chairman of ISAT Global Services Ltd., he provides strategic leadership and governance, guiding the company's ambitious growth agenda with a strong emphasis on integrity, innovation and sustainable value creation. An MBA holder and fully bilingual, he combines entrepreneurial instinct, global business experience and strategic foresight to build enduring enterprises and transform bold ideas into lasting impact.",
+  },
+  {
+    name: 'Dr. Abdullah Adeyanju Binuyo, PhD',
+    title: 'Managing Director/CEO',
+    image: '/images/leadership/abdullah-binuyo.webp',
+    width: 1157,
+    height: 1280,
+    position: '50% 15%',
+    bio: 'Dr. Adeyanju Binuyo is a technology executive and strategist with over two decades of experience across digital infrastructure, telecoms, public policy and sustainable development. As Managing Director/CEO of ISAT Global Services, he leads its evolution into an AI-native digital infrastructure and services platform, advancing next-generation connectivity, 5G, satellite, cloud and enterprise solutions across Nigeria and Africa. He is an alumnus of the University of Lagos, with executive education from the University of London and University of Oxford, and holds a PhD in Sustainable Development.',
   },
 ];
 
