@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const LEADERS = [
   {
     name: 'Sir Ganiyou Afolabi Moustapha',
-    title: 'Chairman, ISAT Global Services Ltd.',
+    title: 'Chairman/CEO',
     image: '/images/leadership/ganiyou-moustapha.webp',
     width: 816,
     height: 1232,
