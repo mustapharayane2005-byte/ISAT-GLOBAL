@@ -6,7 +6,7 @@ const FIGURES = [
   { to: 10, suffix: 'M+', label: 'Customers targeted across services' },
   { to: 15000, suffix: '+', label: 'Sites, current and planned' },
   { to: 20000, suffix: '+', label: 'Kilometres of fibre planned, access and backbone' },
-  { to: 3, prefix: '$', suffix: 'B+', label: 'Planned investment, 2025 to 2030' },
+  { to: 3, prefix: '$', suffix: 'B+', label: 'Planned investment, 2026 to 2030' },
 ];
 
 export function Figures() {
