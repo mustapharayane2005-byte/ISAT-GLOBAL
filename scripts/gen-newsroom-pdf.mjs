@@ -11,10 +11,18 @@ const outDir = join(root, 'public', 'newsroom-pdf');
 mkdirSync(outDir, { recursive: true });
 
 const src = readFileSync(join(root, 'src', 'content', 'articles.ts'), 'utf8');
-const entries = [...src.matchAll(/slug:\s*'([^']+)'[\s\S]*?image:\s*'([^']+)'/g)];
+const entries = src
+  .split(/^\s*slug:\s*(?=')/m)
+  .slice(1)
+  .map((blk) => [
+    null,
+    blk.match(/'([^']+)'/)[1],
+    blk.match(/image:\s*'([^']+)'/)[1],
+    blk.match(/pdfSource:\s*'([^']+)'/)?.[1],
+  ]);
 
-for (const [, slug, image] of entries) {
-  const file = join(root, 'public', image);
+for (const [, slug, image, pdfSource] of entries) {
+  const file = pdfSource ? join(root, pdfSource) : join(root, 'public', image);
   const meta = await sharp(file).metadata();
   // JPEG is embedded untouched; anything else goes through lossless PNG.
   const isJpeg = meta.format === 'jpeg';

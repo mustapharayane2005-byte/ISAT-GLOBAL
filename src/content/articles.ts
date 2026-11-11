@@ -17,6 +17,8 @@ export type Article = {
   image: string;
   /** Path under /public of the generated PDF (always /newsroom-pdf/<slug>.pdf) */
   pdf: string;
+  /** Optional: file (relative to repo root) used for the PDF instead of `image`, e.g. the uncropped original. */
+  pdfSource?: string;
 };
 
 export const ARTICLES: Article[] = [
@@ -30,6 +32,7 @@ export const ARTICLES: Article[] = [
     category: 'Notice',
     image: '/images/newsroom/punch-2026-11-10-isat-code.webp',
     pdf: '/newsroom-pdf/isat-individual-consumer-code-of-practice.pdf',
+    pdfSource: 'photo-archive/newsroom/punch-2026-11-10-p25-full.jpeg',
   },
 ];
 
