@@ -220,6 +220,15 @@ export function Nav() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    href="/newsroom/"
+                    onClick={() => setOpen(false)}
+                    className="nav-link block py-3 text-lead font-medium text-ink"
+                  >
+                    Newsroom
+                  </Link>
+                </li>
                 <li className="pt-2">
                   <Link
                     href="/#contact"
