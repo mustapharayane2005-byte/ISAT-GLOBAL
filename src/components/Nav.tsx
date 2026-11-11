@@ -14,6 +14,7 @@ const LINKS = [
   { label: 'Coverage', href: '/#coverage', id: 'coverage' },
   { label: 'iSAT One', href: '/#isat-one', id: 'isat-one' },
   { label: 'Impact', href: '/#impact', id: 'impact' },
+  { label: 'Newsroom', href: '/newsroom/', id: 'newsroom' },
 ];
 
 // Stable module-level reference, so the observer effect below doesn't tear
@@ -160,7 +161,7 @@ export function Nav() {
             </motion.span>
           </Link>
 
-          <ul className="hidden items-center gap-10 md:flex">
+          <ul className="hidden items-center gap-6 md:flex lg:gap-10">
             {LINKS.map((link) => (
               <li key={link.href}>
                 <Link
@@ -220,15 +221,6 @@ export function Nav() {
                     </Link>
                   </li>
                 ))}
-                <li>
-                  <Link
-                    href="/newsroom/"
-                    onClick={() => setOpen(false)}
-                    className="nav-link block py-3 text-lead font-medium text-ink"
-                  >
-                    Newsroom
-                  </Link>
-                </li>
                 <li className="pt-2">
                   <Link
                     href="/#contact"
