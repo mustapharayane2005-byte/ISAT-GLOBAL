@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/gen-photo-manifest.mjs && node scripts/gen-nigeria-geo.mjs",
+    "predev": "node scripts/gen-photo-manifest.mjs && node scripts/gen-nigeria-geo.mjs && node scripts/gen-newsroom-pdf.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/gen-photo-manifest.mjs && node scripts/gen-nigeria-geo.mjs",
+    "prebuild": "node scripts/gen-photo-manifest.mjs && node scripts/gen-nigeria-geo.mjs && node scripts/gen-newsroom-pdf.mjs",
     "build": "next build",
     "build:cpanel": "node scripts/build-cpanel.mjs",
     "zip:cpanel": "node scripts/zip-cpanel.mjs",
@@ -19,6 +19,7 @@
     "framer-motion": "^12.4.7",
     "lucide-react": "^1.49.0",
     "next": "^16.3.7",
+    "pdf-lib": "^1.17.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "resend": "^6.31.0",
@@ -35,6 +36,7 @@
     "archiver": "^8.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
   }

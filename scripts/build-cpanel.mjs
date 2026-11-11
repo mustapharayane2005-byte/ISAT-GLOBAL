@@ -24,6 +24,7 @@ function run(cmd) {
 // 1. Codegen (mirrors the normal `prebuild` step).
 run('node scripts/gen-photo-manifest.mjs');
 run('node scripts/gen-nigeria-geo.mjs');
+run('node scripts/gen-newsroom-pdf.mjs');
 
 // 2. Temporarily remove the API route from the app dir so `next build`
 //    with `output: 'export'` doesn't choke on the POST-only handler.

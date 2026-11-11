@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getSiteUrl } from '@/lib/site';
+import { getArticles } from '@/content/articles';
 
 // Required for `output: 'export'` (the cPanel build): this route has no
 // dynamic input, so it can be rendered once at build time.
@@ -24,5 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/leadership`,
       lastModified,
     },
+    {
+      url: `${siteUrl}/newsroom/`,
+      lastModified,
+    },
+    ...getArticles().map((a) => ({
+      url: `${siteUrl}/newsroom/${a.slug}/`,
+      lastModified: a.date,
+    })),
   ];
 }
