@@ -5,6 +5,7 @@ import { DownloadSimple } from '@phosphor-icons/react/dist/ssr';
 import { OriginalViewer } from '@/components/OriginalViewer';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
+import { SourceLabel } from '@/components/SourceLabel';
 import { ARTICLES, formatDate, getArticle } from '@/content/articles';
 import { loadArticleBody } from '@/content/load-article';
 
@@ -57,7 +58,9 @@ export default async function ArticlePage({ params }: Props) {
             <dl className="space-y-4 text-body">
               <div>
                 <dt className="text-caption text-ink-muted">Source</dt>
-                <dd className="font-medium text-ink">{article.source}</dd>
+                <dd className="font-medium text-ink">
+                  <SourceLabel source={article.source} />
+                </dd>
               </div>
               <div>
                 <dt className="text-caption text-ink-muted">Date</dt>

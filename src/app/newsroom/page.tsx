@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
+import { SourceLabel } from '@/components/SourceLabel';
 import { formatDate, getArticles } from '@/content/articles';
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export default function NewsroomPage() {
                 <p className="text-caption font-medium text-[#C62C02]">{a.category}</p>
                 <h2 className="mt-2 text-lead font-semibold text-ink text-balance">{a.title}</h2>
                 <p className="mt-auto pt-5 text-caption text-ink-muted">
-                  {a.source} &middot; {formatDate(a.date)}
+                  <SourceLabel source={a.source} /> &middot; {formatDate(a.date)}
                 </p>
               </div>
             </Link>
